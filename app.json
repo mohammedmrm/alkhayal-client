@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": " الخيال - العميل",
+    "slug": "alKhayalClient",
+    "version": "1.0.3",
+    "orientation": "portrait",
+    "icon": "./app/assets/logo/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./app/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./app/assets/logo/logo.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./assets/n1.wav",
+            "./assets/n2.wav"
+          ]
+        }
+      ]
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.alkhayal.client",
+      "buildNumber": "1.0.3"
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./app/assets/logo/logo.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "useNextNotificationsApi": true,
+      "package": "com.alkhayal.client",
+      "versionCode": 5
+    },
+    "web": {
+      "favicon": "./app/assets/logo/logo.png"
+    },
+    "notification": {
+      "icon": "./app/assets/logo/logo.png",
+      "color": "#FFFFFF",
+      "iosDisplayInForeground": true,
+      "androidMode": "default"
+    }
+  }
+}
