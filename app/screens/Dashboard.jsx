@@ -184,13 +184,14 @@ const Dashboard = () => {
             style={{
               width: "90%",
               height: 45,
-              backgroundColor: "#c8e6c9",
+              backgroundColor: "#fcf4d2",
               alignSelf: "center",
               margin: 10,
-              borderRadius: borderRadiuss.Radius_larg,
+              borderRadius: 5,
               alignItems: "center",
               justifyContent: "center",
-              flexDirection: "row-reverse",
+              flexDirection: "row",
+              elevation: 5,
             }}
           >
             <Feather name="phone-call" size={20} color={"#388e3c"} />
@@ -198,7 +199,7 @@ const Dashboard = () => {
               style={{
                 alignSelf: "center",
                 paddingHorizontal: 8,
-                color: "#388e3c",
+                color: "#947701",
                 fontFamily: "Tjw_xblod",
                 fontSize: 14,
               }}

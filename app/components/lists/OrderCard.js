@@ -139,7 +139,7 @@ class OrderCard extends PureComponent {
               <Icon
                 backgroundColor={"#00000000"}
                 iconColor={this.handelColor(this.props.item?.order_status_id)}
-                name="phone-message-outline"
+                name="phone-in-talk"
                 size={55}
               />
             </TouchableHighlight>

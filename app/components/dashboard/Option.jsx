@@ -68,10 +68,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
-
-    elevation: 4,
+    elevation: 5,
     borderBottomWidth: 4,
-    borderBottomColor: colors.vueColorButtom,
+    borderBottomColor: colors.primery,
   },
 
   adsAlart: {
