@@ -1,7 +1,8 @@
 export default {
-  primery: "#b88907",
-  secondery: "#b8a51c",
+  primery: "#743d5f",
+  secondery: "#e14264",
   gray: "#F2F2F2",
+  resend: "#c76300",
   black: "#222c45",
   white: "#fff",
   light: "#f8f4f4",
@@ -10,6 +11,7 @@ export default {
   medium: "#6e6969",
   danger: "#ff5252",
   dark: "#0c0c0c",
+  brandDark: "#82013b",
   borderColor: "#20232a",
   success: "#39C555",
   pause: "#FFA500",
@@ -19,5 +21,5 @@ export default {
   lightGreen: "#F3FBD0",
   unseen: "#f7fbfd",
   grayRandom: "#eceff1",
-  vueColorButtom: "#9e7608",
+  vueColorButtom: "#b72680",
 };

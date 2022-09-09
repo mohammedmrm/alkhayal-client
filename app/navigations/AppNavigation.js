@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import Constants from "expo-constants";
 import { Platform, Text } from "react-native";
-import { Vibration } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 import SearchResults from "./../navigations/SearchNavigator";
 import NotificationsNavigator from "./NotificationsNavigator";
 import DashboardNavigator from "./DashboardNavigator";
@@ -20,7 +19,9 @@ import Routes from "../Routes";
 const Tab = createBottomTabNavigator();
 const AppNavigator = (ref) => {
   const { user } = useAuth();
-
+  const navitation = useNavigation();
+  const notificationListener = useRef();
+  const responseListener = useRef();
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -28,22 +29,21 @@ const AppNavigator = (ref) => {
       shouldSetBadge: false,
     }),
   });
-
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
   useEffect(() => {
-    regesterForPushNotificaition();
-    Notifications.addNotificationReceivedListener((notificationListener) => {
-      if (notificationListener.remote) {
-        Vibration.vibrate();
-        Notifications.presentNotificationAsync({
-          title: "تحديث حالة",
-          body: "تاكد من تحديث الحالة",
-          ios: { _displayInForeground: true },
+    if (lastNotificationResponse) {
+      var id = lastNotificationResponse.notification.request.content.data.id;
+      console.log(
+        "Noti ORDER ID",
+        lastNotificationResponse.notification.request.content.data.id
+      );
+      id &&
+        navitation.navigate(Routes.ORDER_DETAILS, {
+          id: id,
+          notify_id: "",
         });
-      }
-      //  navitation.navigate(Routes.NOTIFICATION);
-      // console.log(notificationListener.request.content.data.id);
-    });
-  }, []);
+    }
+  }, [lastNotificationResponse]);
 
   const regesterForPushNotificaition = async () => {
     try {
@@ -87,6 +87,7 @@ const AppNavigator = (ref) => {
       console.log("Error getting a push token", error);
     }
   };
+  regesterForPushNotificaition();
   return (
     <Tab.Navigator
       activeColor={colors.vueColorButtom}

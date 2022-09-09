@@ -1,18 +1,21 @@
-import React from 'react'
-import LottieView from 'lottie-react-native';
-import Loading from '../../config/loadings'
-
+import React from "react";
+import LottieView from "lottie-react-native";
+import Loading from "../../config/loadings";
+import { Platform } from "react-native";
 const ActivityIndecator = (visable = false, style) => {
-    const t = Loading.adsTab;
-    if (!visable) return null;
-    return <LottieView
-        style={{
-            width: "90%",
-            height: 100,
-        }}
-        autoPlay
-        loop
-        source={t} />
-}
+  const t = Loading.adsTab;
+  if (!visable || Platform.OS === "web") return null;
+  return (
+    <LottieView
+      style={{
+        width: "90%",
+        height: 100,
+      }}
+      autoPlay
+      loop
+      source={t}
+    />
+  );
+};
 
-export default ActivityIndecator
+export default ActivityIndecator;

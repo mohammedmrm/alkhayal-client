@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": " الخيال - العميل",
-    "slug": "alKhayalClient",
-    "version": "1.0.3",
+    "name": "الرياح - العميل",
+    "slug": "alriyahClient",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -32,8 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alkhayal.client",
-      "buildNumber": "1.0.3"
+      "bundleIdentifier": "com.alriyah.client",
+      "buildNumber": "1.0.1"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -42,8 +42,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "useNextNotificationsApi": true,
-      "package": "com.alkhayal.client",
-      "versionCode": 5
+      "package": "com.alriyah.client",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./app/assets/logo/logo.png"
@@ -53,6 +53,11 @@
       "color": "#FFFFFF",
       "iosDisplayInForeground": true,
       "androidMode": "default"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5a8d34ba-7461-4eda-bdc2-89f6707b977b"
+      }
     }
   }
 }

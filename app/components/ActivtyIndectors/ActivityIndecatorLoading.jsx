@@ -2,10 +2,10 @@ import React from 'react'
 import LottieView from 'lottie-react-native';
 import Loading from '../../config/loadings'
 import { View, StyleSheet } from 'react-native';
-
+import { Platform } from "react-native";
 const ActivityIndecator = (visable = false, style) => {
     const t = Loading.loading;
-    if (!visable) return null;
+     if (!visable || Platform.OS === "web") return null;
     return <View style={styles.contaner}>
         <LottieView
             style={{

@@ -31,10 +31,8 @@ const OrderDetails = () => {
     const results = await getOrder?.getOrder(token, id, notificatin_id);
     setOrder(results?.data?.data[0] || {});
     setIsLoading(false);
-    console.log(results);
   };
   useEffect(() => {
-    console.log(user);
     loadDetails(user?.token, route?.params?.id, route?.params?.notify_id);
   }, []);
   const handelColor = (id) => {
@@ -52,7 +50,7 @@ const OrderDetails = () => {
       case "9":
         return colors.returned;
       case "13":
-        return colors.gray;
+        return colors.resend;
       default:
         return colors.medium;
     }

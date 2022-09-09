@@ -17,6 +17,8 @@ const iconNames = [
   "map",
   "logout",
   "axis-x-arrow",
+  "car",
+  "repeat",
 ];
 const TrackingBox = ({ item, bgColor }) => {
   return (

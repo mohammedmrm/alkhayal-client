@@ -5,11 +5,10 @@ import borderRadiuss from "../../config/borderRadiuss";
 import colors from "../../config/colors";
 const OptionsList = ({ path, data }) => {
   const navigator = useNavigation();
-
   const handelData = (key) => {
     switch (key) {
       case "disclosures":
-        return ""; // `(${numberWithCommas(data.client_price)})`;
+        return "";
       case "returned":
         return `(${data.inprocess})`;
       case "instorage":
@@ -19,15 +18,19 @@ const OptionsList = ({ path, data }) => {
           parseInt(data.instoragepartiallyReturnd)
         })`;
       case "onway":
-        return `(${data.onway})`;
+        return `(${parseInt(data.onway)})`;
       case "posponded":
-        return `(${data.posponded})`;
+        return `(${parseInt(data.posponded)})`;
       case "recived":
-        return `(${
-          parseInt(data.replace) +
-          parseInt(data.recieved) +
-          parseInt(data.partiallyReturnd)
-        })`;
+        return `(${parseInt(data.recieved)})`;
+      case "partialy":
+        return `(${parseInt(data.partiallyReturnd)})`;
+      case "replace":
+        return `(${parseInt(data.replace)})`;
+      case "resend":
+        return `(${parseInt(data.resend)})`;
+      case "change":
+        return `(${parseInt(data.change)})`;
       default:
         return "(0)";
     }
