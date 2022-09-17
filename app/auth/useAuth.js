@@ -16,6 +16,7 @@ export default function useAuth() {
 
   const logOut = () => {
     setUser(null);
+
     authStorage.removeToken();
   };
 

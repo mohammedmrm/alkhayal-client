@@ -1,26 +1,16 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  ScrollView,
-} from "react-native";
 import * as Yup from "yup";
-
-import {
-  ErrorMessage,
-  AppFormField,
-  AppForm,
-  SubmitButton,
-} from "../components/forms";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, Image, ImageBackground, ScrollView } from "react-native";
+import { Picker } from '@react-native-picker/picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
-import { StatusBar } from "expo-status-bar";
 import colors from "../config/colors";
-import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorLoading";
 import settings from "../config/settings";
+import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorLoading";
+import { ErrorMessage, AppFormField, AppForm, SubmitButton } from "../components/forms";
+import branchesApi from "../api/branchesApi";
 
 const validationSchema = Yup.object().shape({
   phone: Yup.string().required().min(11).max(11).label("رقم الهاتف"),
@@ -30,6 +20,9 @@ export default function LoginPage() {
   const auth = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [loginFailed, setLoginFailed] = useState(false);
+  const [branches, setBranches] = useState([])
+
+  const [branch, setBranch] = useState()
   const handleSubmit = async ({ phone, password }) => {
     setIsLoading(true);
     const results = await authApi.login(phone, password);
@@ -45,6 +38,37 @@ export default function LoginPage() {
     setIsLoading(false);
     auth.logIn(results.data);
   };
+  //---------------- new update ------------
+  const loadDetails = async () => {
+    const results = await branchesApi?.branchesApi();
+    setBranches(results?.data?.data || []);
+  };
+  useEffect(() => {
+    setIsLoading(true)
+    loadDetails();
+    setIsLoading(false)
+
+  }, []);
+
+  const onSelectBranch = async (value, index) => {
+
+    try {
+      setBranch(value)
+      console.log("set localstorage", value)
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('useItAsMainUrl', jsonValue)
+    } catch (e) {
+      // saving error
+    }
+
+  }
+  //---------------- new update ------------
+
+
+
+
+
+
   return (
     <ImageBackground
       blurRadius={6}
@@ -67,6 +91,19 @@ export default function LoginPage() {
           </View>
           <View style={styles.formContainer}>
             <Text style={styles.text}>تسجيل دخول </Text>
+
+            <View style={{ width: "100%", height: 150 }}>
+
+              <Picker
+                selectedValue={branch}
+                onValueChange={(itemValue, itemIndex) =>
+                  onSelectBranch(itemValue, itemIndex)
+                }>
+                {branches.map((item) => (
+                  <Picker.Item label={item.name} value={item.url} />
+                ))}
+              </Picker>
+            </View>
             <ErrorMessage
               error="رقم الهاتف او كلمة المرور خطاْ"
               visible={loginFailed}
@@ -141,7 +178,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     width: "95%",
-    height: 350,
+    height: 450,
     top: "5%",
     alignSelf: "center",
     borderWidth: 1,

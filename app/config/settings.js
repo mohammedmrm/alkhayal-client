@@ -1,19 +1,30 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
+
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('useItAsMainUrl')
+    console.log("get url", jsonValue)
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    // error reading value
+  }
+}
 const settings = {
   dev: {
-    apiUrl: "http://alkhayalexpress.com/client/api",
+    apiUrl: getData() || "http://squretehad.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "الخيال",
+    companyName: "الصقور",
   },
   staging: {
-    apiUrl: "http://alkhayalexpress.com/client/api",
+    apiUrl: getData() || "http://squretehad.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "الخيال",
+    companyName: "الصقور",
   },
   prod: {
-    apiUrl: "http://alkhayalexpress.com/client/api",
+    apiUrl: getData() || "http://squretehad.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "الخيال",
+    companyName: "الصقور",
   },
 };
 

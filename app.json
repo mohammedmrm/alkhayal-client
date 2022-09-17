@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": " الخيال - العميل",
-    "slug": "alKhayalClient",
-    "version": "1.0.3",
+    "name": "الصقور",
+    "slug": "alsqureClient",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -32,8 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alkhayal.client",
-      "buildNumber": "1.0.3"
+      "bundleIdentifier": "com.alsqure.client",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -42,11 +42,18 @@
         "backgroundColor": "#FFFFFF"
       },
       "useNextNotificationsApi": true,
-      "package": "com.alkhayal.client",
+      "package": "com.alsqure.client",
       "versionCode": 5
     },
     "web": {
-      "favicon": "./app/assets/logo/logo.png"
+      "favicon": "./app/assets/logo/logo.png",
+      "build": {
+        "babel": {
+          "include": [
+            "@ui-kitten/components"
+          ]
+        }
+      }
     },
     "notification": {
       "icon": "./app/assets/logo/logo.png",
