@@ -184,7 +184,7 @@ const Dashboard = () => {
             style={{
               width: "90%",
               height: 45,
-              backgroundColor: "#fcf4d2",
+              backgroundColor: "#fac8e3",
               alignSelf: "center",
               margin: 10,
               borderRadius: 5,
@@ -194,12 +194,12 @@ const Dashboard = () => {
               elevation: 5,
             }}
           >
-            <Feather name="phone-call" size={20} color={"#388e3c"} />
+            <Feather name="phone-call" size={20} color={"#a30057"} />
             <Title
               style={{
                 alignSelf: "center",
                 paddingHorizontal: 8,
-                color: "#947701",
+                color: "#a30057",
                 fontFamily: "Tjw_xblod",
                 fontSize: 14,
               }}

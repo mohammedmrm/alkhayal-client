@@ -40,6 +40,7 @@ import useAuth from "../auth/useAuth";
 import colors from "../config/colors";
 import Routes from "../Routes";
 import { I18nManager } from "react-native";
+import settings from "../config/settings";
 
 //-------------------------------------------------------------------------
 function Dashboard() {
@@ -212,7 +213,8 @@ function Dashboard() {
   };
   const loadOrders_local = async (nextPage) => {
     const results = await cache.get(
-      "http://aldeqaexpress.com/client/api/search.php?token=" +
+      settings.apiUrl +
+        "/search.php?token=" +
         user.token +
         "&limit=20&page=" +
         nextPage

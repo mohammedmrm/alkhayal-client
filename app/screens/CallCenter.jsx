@@ -12,30 +12,16 @@ import borderRadiuss from "../config/borderRadiuss";
 
 const menuItems = [
   {
-    title: "المخزن",
-    subTitle: "07717773193",
-    img: require("../assets/avatar/call-center.png"),
-
-    targetScreen: routes.NOTIFICATION,
-  },
-  {
-    title: "الحسابات",
-    subTitle: "07709225573",
+    title: "خدمة العملاء",
+    subTitle: "07712319656",
     img: require("../assets/avatar/call-center-agent.png"),
 
     targetScreen: routes.CHAT,
   },
   {
     title: "خدمة العملاء",
-    subTitle: "07735549625",
+    subTitle: "07710566966",
     img: require("../assets/avatar/24-hours-support.png"),
-
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "الادارة ",
-    subTitle: "07704242845",
-    img: require("../assets/avatar/call-cente.png"),
 
     targetScreen: routes.CHAT,
   },

@@ -24,7 +24,7 @@ class OrderCard extends PureComponent {
       case "9":
         return colors.returned;
       case "13":
-        return colors.gray;
+        return colors.resend;
       default:
         return colors.medium;
     }
