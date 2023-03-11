@@ -277,6 +277,84 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440282345355:android:bedb9ad171ef027e6bc98e",
+        "android_client_info": {
+          "package_name": "com.knari.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440282345355-t7god9jjtldh0qme64hbjkck3f6vr48g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyZEjA1_eCWePgMgbNI5XnEM5Bx3rT4mo"
+        },
+        {
+          "current_key": "AIzaSyAgpp1W_ZuWrpPAebBNLe9QIMNQJoy2GGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440282345355-t7god9jjtldh0qme64hbjkck3f6vr48g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "440282345355-12q1g3pl1oh5mnlo5ldsj4vhr6hjf668.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alsaham.client"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440282345355:android:abad8923144a9d656bc98e",
+        "android_client_info": {
+          "package_name": "com.squr.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440282345355-t7god9jjtldh0qme64hbjkck3f6vr48g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyZEjA1_eCWePgMgbNI5XnEM5Bx3rT4mo"
+        },
+        {
+          "current_key": "AIzaSyAgpp1W_ZuWrpPAebBNLe9QIMNQJoy2GGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440282345355-t7god9jjtldh0qme64hbjkck3f6vr48g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "440282345355-12q1g3pl1oh5mnlo5ldsj4vhr6hjf668.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alsaham.client"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

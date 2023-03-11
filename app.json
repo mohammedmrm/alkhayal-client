@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "الرياح - العميل",
-    "slug": "alriyahClient",
-    "version": "1.0.1",
+    "name": "الضبي  - العميل",
+    "slug": "suqrClient",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -32,8 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alriyah.client",
-      "buildNumber": "1.0.1"
+      "bundleIdentifier": "com.squr.client",
+      "buildNumber": "2.0.0"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -42,7 +42,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "useNextNotificationsApi": true,
-      "package": "com.alriyah.client",
+      "package": "com.squr.client",
       "versionCode": 2
     },
     "web": {
@@ -56,7 +56,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "5a8d34ba-7461-4eda-bdc2-89f6707b977b"
+        "projectId": "5b651e87-df27-4940-ae89-f15217fbfb23"
       }
     }
   }

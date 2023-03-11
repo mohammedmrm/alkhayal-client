@@ -1,19 +1,19 @@
 import Constants from "expo-constants";
 const settings = {
   dev: {
-    apiUrl: "https://aquaexp.com/client/api",
+    apiUrl: "https://aldhabiexp.com/client/api/",
     logo: require("../assets/logo/logo.png"),
-    companyName: "الرياح",
+    companyName: "الضبي",
   },
   staging: {
-    apiUrl: "https://aquaexp.com/client/api",
+    apiUrl: "https://aldhabiexp.com/client/api/",
     logo: require("../assets/logo/logo.png"),
-    companyName: "الرياح",
+    companyName: "الضبي",
   },
   prod: {
-    apiUrl: "https://aquaexp.com/client/api",
+    apiUrl: "https://aldhabiexp.com/client/api/",
     logo: require("../assets/logo/logo.png"),
-    companyName: "الرياح",
+    companyName: "الضبي",
   },
 };
 
