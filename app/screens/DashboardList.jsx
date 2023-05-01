@@ -122,6 +122,7 @@ function Dashboard() {
       search ? search : null,
       nextPage
     );
+    console.log(results);
     if (results.data.success === "0") {
       return setIsLoading(false);
     }

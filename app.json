@@ -41,7 +41,6 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "useNextNotificationsApi": true,
       "package": "com.squr.client",
       "versionCode": 2
     },
