@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "الرياح - العميل",
+    "name": "افاق بغداد - العميل",
     "slug": "alriyahClient",
     "version": "1.0.1",
     "orientation": "portrait",
@@ -41,7 +41,6 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "useNextNotificationsApi": true,
       "package": "com.alriyah.client",
       "versionCode": 2
     },

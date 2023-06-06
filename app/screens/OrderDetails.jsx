@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { Image } from "react-native-animatable";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ActivityIndicator from "../components/ActivtyIndectors/ActivityIndecatorOrderDetails";
@@ -66,108 +60,56 @@ const OrderDetails = () => {
             <View style={styles.orderDetailsContainer}>
               <View style={{ width: "100%", height: "25%" }}>
                 <View style={styles.headerDetails}>
-                  <View
-                    style={[
-                      styles.titleOrderStatusView,
-                      { backgroundColor: handelColor(order?.order_status_id) },
-                    ]}
-                  >
-                    <Text style={styles.titleOrderStatus}>
-                      {order?.order_status}
-                    </Text>
+                  <View style={[styles.titleOrderStatusView, { backgroundColor: handelColor(order?.order_status_id) }]}>
+                    <Text style={styles.titleOrderStatus}>{order?.order_status}</Text>
                   </View>
                   <Text style={styles.titleOrderId}>{order?.order_no}</Text>
                 </View>
               </View>
               <View style={styles.textContainer}>
-                <ListItemOrderDetail
-                  caption="أسم المحل"
-                  details={order?.store_name}
-                />
+                <ListItemOrderDetail caption="أسم المحل" details={order?.store_name} />
                 {order?.customer_name !== "NA" && (
-                  <ListItemOrderDetail
-                    caption="أسم الزبون"
-                    details={order?.customer_name}
-                  />
+                  <ListItemOrderDetail caption="أسم الزبون" details={order?.customer_name} />
                 )}
                 <ListItemOrderDetail
                   onPress={true}
                   caption="هاتف الزبون"
                   details={order?.customer_phone}
+                  order={order?.order_no}
                 />
                 {order?.address ? (
-                  <ListItemOrderDetail
-                    caption="عنوان الزبون"
-                    details={`${order?.city} - ${order?.town}`}
-                  />
+                  <ListItemOrderDetail caption="عنوان الزبون" details={`${order?.city} - ${order?.town}`} />
                 ) : (
-                  <ListItemOrderDetail
-                    caption="عنوان الزبون"
-                    details={`${order?.city} - ${order?.town}`}
-                  />
+                  <ListItemOrderDetail caption="عنوان الزبون" details={`${order?.city} - ${order?.town}`} />
                 )}
-                {order?.dev_price && (
-                  <ListItemOrderDetail
-                    caption="سعر التوصيل"
-                    details={order?.dev_price}
-                  />
-                )}
-                {order?.client_price && (
-                  <ListItemOrderDetail
-                    caption="السعر الصافي"
-                    details={order?.client_price}
-                  />
-                )}
-                {order?.price && (
-                  <ListItemOrderDetail
-                    caption="مبلغ الوصل"
-                    details={order?.price}
-                  />
-                )}
-                {order?.new_price && (
-                  <ListItemOrderDetail
-                    caption="المبلغ المستلم"
-                    details={order?.new_price}
-                  />
-                )}
-                {order?.driver_name && (
-                  <ListItemOrderDetail
-                    caption="أسم المندوب"
-                    details={order?.driver_name}
-                  />
-                )}
+                {order?.dev_price && <ListItemOrderDetail caption="سعر التوصيل" details={order?.dev_price} />}
+                {order?.client_price && <ListItemOrderDetail caption="السعر الصافي" details={order?.client_price} />}
+                {order?.price && <ListItemOrderDetail caption="مبلغ الوصل" details={order?.price} />}
+                {order?.new_price && <ListItemOrderDetail caption="المبلغ المستلم" details={order?.new_price} />}
+                {order?.driver_name && <ListItemOrderDetail caption="أسم المندوب" details={order?.driver_name} />}
                 {order?.driver_phone && (
                   <ListItemOrderDetail
                     onPress={true}
                     caption="هاتف المندوب"
                     details={order?.driver_phone}
+                    order={order?.order_no}
                   />
                 )}
                 {order?.driver_phone && (
-                  <ListItemOrderDetail
-                    caption="تم التحاسب؟"
-                    details={order?.money_status === "1" ? "نعم" : "كلا"}
-                  />
+                  <ListItemOrderDetail caption="تم التحاسب؟" details={order?.money_status === "1" ? "نعم" : "كلا"} />
                 )}
               </View>
             </View>
             <TouchableWithoutFeedback onPress={() => startChating(order?.id)}>
               <View style={styles.chatShadow}>
-                <Icon
-                  name={"message-bulleted"}
-                  size={70}
-                  iconColor={"#de3456"}
-                  backgroundColor={colors.white}
-                />
+                <Icon name={"message-bulleted"} size={70} iconColor={"#de3456"} backgroundColor={colors.white} />
               </View>
             </TouchableWithoutFeedback>
             <ScrollView>
               {order?.tracking &&
                 order?.tracking.map((item) => (
                   <TrackingBox
-                    key={`${item.order_status_id}${
-                      Date.now() + Math.random()
-                    }`.toString()}
+                    key={`${item.order_status_id}${Date.now() + Math.random()}`.toString()}
                     bgColor={handelColor(item.order_status_id)}
                     item={item}
                   />

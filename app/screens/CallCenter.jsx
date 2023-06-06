@@ -13,16 +13,14 @@ import borderRadiuss from "../config/borderRadiuss";
 const menuItems = [
   {
     title: "خدمة العملاء",
-    subTitle: "07712319656",
+    subTitle: "07700000000",
     img: require("../assets/avatar/call-center-agent.png"),
-
     targetScreen: routes.CHAT,
   },
   {
     title: "خدمة العملاء",
-    subTitle: "07710566966",
+    subTitle: "0770000000",
     img: require("../assets/avatar/24-hours-support.png"),
-
     targetScreen: routes.CHAT,
   },
   // {
@@ -83,8 +81,7 @@ function CallCenter() {
             fontSize: 14,
           }}
         >
-          نحن هنا من اجل مساعدتك اضغط مباشرتا على القسم المطلوب وسوف تتصل بالشخص
-          المسوؤل لحل طلبك
+          نحن هنا من اجل مساعدتك اضغط مباشرتا على القسم المطلوب وسوف تتصل بالشخص المسوؤل لحل طلبك
         </Paragraph>
       </View>
 
