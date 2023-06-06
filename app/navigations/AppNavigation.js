@@ -33,10 +33,7 @@ const AppNavigator = (ref) => {
   useEffect(() => {
     if (lastNotificationResponse) {
       var id = lastNotificationResponse.notification.request.content.data.id;
-      console.log(
-        "Noti ORDER ID",
-        lastNotificationResponse.notification.request.content.data.id
-      );
+      console.log("Noti ORDER ID", lastNotificationResponse.notification.request.content.data.id);
       id &&
         navitation.navigate(Routes.ORDER_DETAILS, {
           id: id,
@@ -52,15 +49,11 @@ const AppNavigator = (ref) => {
         // Absence of the manifest means we're in bare workflow
         experienceId = "@username/clientExpo";
       }
-      const { status: existingStatus } = await Permissions.getAsync(
-        Permissions.NOTIFICATIONS
-      );
+      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 
       let finalStatus = existingStatus;
       if (existingStatus !== "granted") {
-        const { status } = await Permissions.askAsync(
-          Permissions.NOTIFICATIONS
-        );
+        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
         finalStatus = status;
       }
       if (finalStatus !== "granted") {
@@ -68,20 +61,18 @@ const AppNavigator = (ref) => {
         return;
       }
       const token = await Notifications.getExpoPushTokenAsync({
+        projectId: "b1d9e063-3d91-4f7c-8342-bae2dfd80d60",
         experienceId,
       });
       await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
       if (Platform.OS === "android") {
-        Notifications.setNotificationChannelAsync(
-          `alnahr_user_id_${user.data.id}`,
-          {
-            name: `alnahr_user_id_${user.data.id}`,
-            sound: true,
-            importance: Notifications.AndroidImportance.MAX,
-            vibrationPattern: [0, 250, 250, 250],
-            lightColor: "#FF231F7C",
-          }
-        );
+        Notifications.setNotificationChannelAsync(`alnahr_user_id_${user.data.id}`, {
+          name: `alnahr_user_id_${user.data.id}`,
+          sound: true,
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: "#FF231F7C",
+        });
       }
     } catch (error) {
       console.log("Error getting a push token", error);
@@ -102,9 +93,7 @@ const AppNavigator = (ref) => {
           headerShown: false,
           // tabBarLabel: "بحث",
           tabBarLabel: () => null,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="search" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="search" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -114,9 +103,7 @@ const AppNavigator = (ref) => {
           headerShown: false,
           // tabBarLabel: "اشعاراتي",
           tabBarLabel: () => null,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="bell" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="bell" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -126,9 +113,7 @@ const AppNavigator = (ref) => {
           tabBarLabel: () => null,
           headerShown: false,
           // tabBarLabel: "لوحة التحكم",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="home" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="home" color={color} size={size} />,
           // tabBarButton: () => (
           //   <DashboardButton
           //     onPress={() => navigation.navigate(Routes.DASHBOARD)}
@@ -144,9 +129,7 @@ const AppNavigator = (ref) => {
           headerShown: false,
           tabBarLabel: () => null,
           //tabBarLabel: "محادثتي",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="message-circle" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="message-circle" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -156,9 +139,7 @@ const AppNavigator = (ref) => {
           // headerShown: false,
           tabBarLabel: () => null,
           title: <Text style={{ fontFamily: "Tjw_reg" }}>الصفحة الشخصية</Text>,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="user" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
         }}
       />
     </Tab.Navigator>

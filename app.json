@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "افاق بغداد - العميل",
-    "slug": "alriyahClient",
+    "name": " سهم النابل - العميل",
+    "slug": "sahamalnabelClient",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
@@ -32,7 +32,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alriyah.client",
+      "bundleIdentifier": "com.sahamalnabel.client",
       "buildNumber": "1.0.1"
     },
     "android": {
@@ -41,8 +41,8 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.alriyah.client",
-      "versionCode": 2
+      "package": "com.sahamalnabel.client",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./app/assets/logo/logo.png"
@@ -55,7 +55,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "5a8d34ba-7461-4eda-bdc2-89f6707b977b"
+        "projectId": "b1d9e063-3d91-4f7c-8342-bae2dfd80d60"
       }
     }
   }

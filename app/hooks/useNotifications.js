@@ -19,16 +19,13 @@ export default useNotifications = () => {
     try {
       const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       if (!permission.granted) return null;
-      const token = await Notifications.getExpoPushTokenAsync();
+      const token = await Notifications.getExpoPushTokenAsync({ projectId: "b1d9e063-3d91-4f7c-8342-bae2dfd80d60" });
       await expoPushTokenApi.register(user.token, JSON.stringify(token));
       if (Platform.OS === "android") {
-        Notifications.setNotificationChannelAsync(
-          "haydermohamedaliweaakalialiweaakalihellosafarticabogauallylayer",
-          {
-            name: "haydermohamedaliweaakalialiweaakalihellosafarticabogauallylayer",
-            sound: true,
-          }
-        );
+        Notifications.setNotificationChannelAsync("haydermohamedaliweaakalialiweaakalihellosafarticabogauallylayer", {
+          name: "haydermohamedaliweaakalialiweaakalihellosafarticabogauallylayer",
+          sound: true,
+        });
       }
     } catch (error) {
       console.log("Error getting a push token", error);
