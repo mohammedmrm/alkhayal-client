@@ -15,7 +15,6 @@ function CallCenter() {
     const results = await getCallcenter.getCallCenter(user.token);
     setCallCenter([...results.data.data]);
   };
-  retur;
   useEffect(() => {
     getCall();
   }, []);
