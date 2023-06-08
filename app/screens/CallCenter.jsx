@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Paragraph, Title } from "react-native-paper";
@@ -9,54 +9,20 @@ import routes from "../Routes";
 import Screen from "../components/Screen";
 import { Linking } from "react-native";
 import borderRadiuss from "../config/borderRadiuss";
-
-const menuItems = [
-  {
-    title: "الاداره",
-    subTitle: "07716646660",
-    img: require("../assets/avatar/call-center-agent.png"),
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "الاداره",
-    subTitle: "07711444228",
-    img: require("../assets/avatar/call-center-agent.png"),
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "خدمة العملاء",
-    subTitle: "07719910081",
-    img: require("../assets/avatar/24-hours-support.png"),
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "خدمة العملاء",
-    subTitle: "07727991876 ",
-    img: require("../assets/avatar/24-hours-support.png"),
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "خدمة العملاء",
-    subTitle: "07711988675",
-    img: require("../assets/avatar/24-hours-support.png"),
-    targetScreen: routes.CHAT,
-  },
-  // {
-  //     title: "بصرة, أربيل, سليمانية",
-  //     subTitle: "07835723018",
-  //     img: require("../assets/avatar/24-hours-suppor.png"),
-
-  //     targetScreen: routes.CHAT,
-  // },
-  // {
-  //     title: "ديوانية, موصل, بابل, كوت",
-  //     subTitle: "07835723019",
-  //     img: require("../assets/avatar/woman-with-headset.png"),
-  //     targetScreen: routes.CHAT,
-  // },
-];
+import getCallcenter from "../api/getCallCenter";
+import useAuth from "../auth/useAuth";
 
 function CallCenter() {
+  const { user } = useAuth();
+
+  const [callcenter, setCallCenter] = useState([]);
+  const getCall = async () => {
+    const results = await getCallcenter.getCallCenter(user.token);
+    setCallCenter([...results.data.data]);
+  };
+  useEffect(() => {
+    getCall();
+  }, []);
   return (
     <Screen style={styles.screen}>
       <View
