@@ -20,8 +20,6 @@ const Tab = createBottomTabNavigator();
 const AppNavigator = (ref) => {
   const { user } = useAuth();
   const navitation = useNavigation();
-  const notificationListener = useRef();
-  const responseListener = useRef();
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,

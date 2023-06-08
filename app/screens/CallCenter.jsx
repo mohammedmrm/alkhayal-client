@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Paragraph, Title } from "react-native-paper";
@@ -8,8 +8,11 @@ import Screen from "../components/Screen";
 import { Linking } from "react-native";
 import borderRadiuss from "../config/borderRadiuss";
 import getCallcenter from "../api/getCallCenter";
+import useAuth from "../auth/useAuth";
 
 function CallCenter() {
+  const { user } = useAuth();
+
   const [callcenter, setCallCenter] = useState([]);
   const getCall = async () => {
     const results = await getCallcenter.getCallCenter(user.token);
@@ -18,7 +21,7 @@ function CallCenter() {
   useEffect(() => {
     getCall();
   }, []);
-  n(
+  return (
     <Screen style={styles.screen}>
       <View
         style={{
