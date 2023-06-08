@@ -3,17 +3,17 @@ const settings = {
   dev: {
     apiUrl: "https://afaqbaghdad.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "افاق لغداد",
+    companyName: "افاق بغداد",
   },
   staging: {
     apiUrl: "https://afaqbaghdad.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "افاق لغداد",
+    companyName: "افاق بغداد",
   },
   prod: {
     apiUrl: "https://afaqbaghdad.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "افاق لغداد",
+    companyName: "افاق بغداد",
   },
 };
 
