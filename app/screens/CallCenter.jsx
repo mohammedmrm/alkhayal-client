@@ -68,7 +68,7 @@ function CallCenter() {
       <View style={styles.container}>
         <FlatList
           data={callcenter}
-          keyExtractor={(menuItem) => menuItem.title}
+          keyExtractor={(callcenter) => callcenter.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <ListItem
