@@ -1,34 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Linking,
-  Animated,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
-import {
-  Select,
-  SelectItem,
-  Modal,
-  Card,
-  Button,
-  Text,
-  Spinner,
-} from "@ui-kitten/components";
+import { View, FlatList, StyleSheet, Linking, Animated, TouchableOpacity, Dimensions } from "react-native";
+import { Select, SelectItem, Modal, Card, Button, Text, Spinner } from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
 import BottomSheet from "reanimated-bottom-sheet";
 import { Searchbar } from "react-native-paper";
 import cache from "../utility/cache";
 
-import {
-  OrderCard,
-  ListItemSeparator,
-  QuckViewDetails,
-  QuckViewDetails2,
-  OrderSheet,
-} from "../components/lists";
+import { OrderCard, ListItemSeparator, QuckViewDetails, QuckViewDetails2, OrderSheet } from "../components/lists";
 import ActivityIndecatorLoadingList from "./../components/ActivtyIndectors/ActivityIndecatorLoadingList";
 import { handleCopy } from "../utility/helper";
 import Screen from "./../components/Screen";
@@ -163,23 +141,15 @@ function Dashboard() {
           Linking.openURL(`tel:${order.driver_phone}`);
         }}
       />
-      {true ? (
-        <QuckViewDetails2
-          icon="star" //"star-outline"
-          color={colors.pause}
-          onPress={() => {
-            Linking.openURL(`tel:${item.driver_phone}`);
-          }}
-        />
-      ) : (
-        <QuckViewDetails2
-          icon="star-outline"
-          color={colors.secondery}
-          onPress={() => {
-            Linking.openURL(`tel:${item.driver_phone}`);
-          }}
-        />
-      )}
+      (
+      <QuckViewDetails2
+        icon="star" //"star-outline"
+        color={colors.pause}
+        onPress={() => {
+          Linking.openURL(`tel:${item.driver_phone}`);
+        }}
+      />
+      )
     </View>
   );
   const LoadingIndicator = (props) => (
@@ -212,13 +182,7 @@ function Dashboard() {
     setIsLoading(false);
   };
   const loadOrders_local = async (nextPage) => {
-    const results = await cache.get(
-      settings.apiUrl +
-        "/search.php?token=" +
-        user.token +
-        "&limit=20&page=" +
-        nextPage
-    );
+    const results = await cache.get(settings.apiUrl + "/search.php?token=" + user.token + "&limit=20&page=" + nextPage);
     if (results.data.success === "0") {
       return null;
     }
@@ -344,11 +308,7 @@ function Dashboard() {
             style={{ direction: "rtl" }}
           >
             {statues.map((item) => (
-              <SelectItem
-                key={Date.now() + Math.random()}
-                title={item.name}
-                style={{ direction: "rtl" }}
-              />
+              <SelectItem key={Date.now() + Math.random()} title={item.name} style={{ direction: "rtl" }} />
             ))}
           </Select>
         </View>
@@ -362,11 +322,7 @@ function Dashboard() {
             style={{ direction: "rtl" }}
           >
             {stores.map((item) => (
-              <SelectItem
-                key={Date.now() + Math.random()}
-                title={item.name}
-                style={{ direction: "rtl" }}
-              />
+              <SelectItem key={Date.now() + Math.random()} title={item.name} style={{ direction: "rtl" }} />
             ))}
           </Select>
         </View>
@@ -388,9 +344,7 @@ function Dashboard() {
       <FlatList
         style={{ flex: 1, width: "100%" }}
         data={orders}
-        keyExtractor={(item) =>
-          `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()
-        }
+        keyExtractor={(item) => `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()}
         renderItem={({ item }) => (
           <OrderCard
             item={item}
@@ -440,11 +394,7 @@ function Dashboard() {
         onRefresh={() => refreshingMethod()}
         ListFooterComponent={footer}
       />
-      <Modal
-        onBackdropPress={() => setVisible(false)}
-        backdropStyle={styles.backdrop}
-        visible={visible}
-      >
+      <Modal onBackdropPress={() => setVisible(false)} backdropStyle={styles.backdrop} visible={visible}>
         <Card disabled={true}>
           <Text> 😻 تم نسخ المعلومات</Text>
         </Card>
@@ -453,12 +403,7 @@ function Dashboard() {
 
       <BottomSheet
         ref={bs}
-        snapPoints={[
-          "-10%",
-          window.height * 0.4,
-          window.height * 0.6,
-          window.height * 0.8,
-        ]}
+        snapPoints={["-10%", window.height * 0.4, window.height * 0.6, window.height * 0.8]}
         initialSnap={0}
         renderContent={renderInner}
         renderHeader={renderHeader}

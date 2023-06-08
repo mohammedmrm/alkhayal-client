@@ -1,45 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Paragraph, Title } from "react-native-paper";
-
 import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
-import routes from "../Routes";
 import Screen from "../components/Screen";
 import { Linking } from "react-native";
 import borderRadiuss from "../config/borderRadiuss";
-
-const menuItems = [
-  {
-    title: "خدمة العملاء",
-    subTitle: "07700000000",
-    img: require("../assets/avatar/call-center-agent.png"),
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "خدمة العملاء",
-    subTitle: "0770000000",
-    img: require("../assets/avatar/24-hours-support.png"),
-    targetScreen: routes.CHAT,
-  },
-  // {
-  //     title: "بصرة, أربيل, سليمانية",
-  //     subTitle: "07835723018",
-  //     img: require("../assets/avatar/24-hours-suppor.png"),
-
-  //     targetScreen: routes.CHAT,
-  // },
-  // {
-  //     title: "ديوانية, موصل, بابل, كوت",
-  //     subTitle: "07835723019",
-  //     img: require("../assets/avatar/woman-with-headset.png"),
-  //     targetScreen: routes.CHAT,
-  // },
-];
+import getCallcenter from "../api/getCallCenter";
 
 function CallCenter() {
-  return (
+  const [callcenter, setCallCenter] = useState([]);
+  const getCall = async () => {
+    const results = await getCallcenter.getCallCenter(user.token);
+    setCallCenter([...results.data.data]);
+  };
+  retur;
+  useEffect(() => {
+    getCall();
+  }, []);
+  n(
     <Screen style={styles.screen}>
       <View
         style={{
@@ -87,14 +67,14 @@ function CallCenter() {
 
       <View style={styles.container}>
         <FlatList
-          data={menuItems}
+          data={callcenter}
           keyExtractor={(menuItem) => menuItem.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <ListItem
               title={item.title}
               subTitle={item.subTitle}
-              image={item.img}
+              image={require("../assets/avatar/call-center-agent.png")}
               onPress={() => Linking.openURL(`tel:${item.subTitle}`)}
             />
           )}

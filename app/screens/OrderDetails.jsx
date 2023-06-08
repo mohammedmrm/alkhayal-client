@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import { Image } from "react-native-animatable";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ActivityIndicator from "../components/ActivtyIndectors/ActivityIndecatorOrderDetails";
 import ListItemOrderDetail from "../components/ListItemOrderDetail";
