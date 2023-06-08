@@ -2,7 +2,7 @@
   "expo": {
     "name": "افاق بغداد - العميل",
     "slug": "alriyahClient",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -33,7 +33,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.alriyah.client",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.2"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -42,7 +42,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.alriyah.client",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./app/assets/logo/logo.png"
