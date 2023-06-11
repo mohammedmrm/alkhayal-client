@@ -2,8 +2,8 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import { Paragraph, Title } from "react-native-paper";
-import { Linking } from "react-native";
-import routes from "../Routes";
+import { ListItem, ListItemSeparator } from "../components/lists";
+import colors from "../config/colors";
 import Screen from "../components/Screen";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import borderRadiuss from "../config/borderRadiuss";
@@ -27,6 +27,15 @@ const menuItems = [
 ];
 
 function CallCenter() {
+  const { user } = useAuth();
+  const [callcenter, setCallCenter] = useState([]);
+  const getCall = async () => {
+    const results = await getCallcenter.getCallCenter(user.token);
+    setCallCenter([...results.data.data]);
+  };
+  useEffect(() => {
+    getCall();
+  }, []);
   return (
     <Screen style={styles.screen}>
       <View
@@ -75,7 +84,7 @@ function CallCenter() {
 
       <View style={styles.container}>
         <FlatList
-          data={menuItems}
+          data={callcenter}
           keyExtractor={(menuItem) => menuItem.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
