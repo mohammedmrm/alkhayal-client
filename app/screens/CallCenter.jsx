@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Paragraph, Title } from "react-native-paper";
-
 import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
-import routes from "../Routes";
 import Screen from "../components/Screen";
 import { Linking } from "react-native";
 import borderRadiuss from "../config/borderRadiuss";
@@ -14,7 +12,6 @@ import useAuth from "../auth/useAuth";
 
 function CallCenter() {
   const { user } = useAuth();
-
   const [callcenter, setCallCenter] = useState([]);
   const getCall = async () => {
     const results = await getCallcenter.getCallCenter(user.token);
@@ -71,7 +68,7 @@ function CallCenter() {
 
       <View style={styles.container}>
         <FlatList
-          data={menuItems}
+          data={callcenter}
           keyExtractor={(menuItem) => menuItem.title}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (

@@ -163,7 +163,7 @@ const Dashboard = () => {
         </View>
       </View>
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-        {<SummaryBoxes data={calcData} isLoading={isLoading} />}
+        <SummaryBoxes data={calcData} isLoading={isLoading} />
         <Pressable onPress={() => navigator.navigate(Routes.CALLCENTER)}>
           <View
             style={{
@@ -193,8 +193,7 @@ const Dashboard = () => {
             </Title>
           </View>
         </Pressable>
-
-        {<OptionsList data={data} />}
+        <OptionsList data={data} />
       </ScrollView>
     </Screen>
   );
