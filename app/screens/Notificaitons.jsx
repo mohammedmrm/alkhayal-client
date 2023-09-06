@@ -26,27 +26,21 @@ function NotificationScreen(props) {
     directionalOffsetThreshold: 80,
   };
 
-  const loadNotification = async (nextPage) => {
+  const loadNotification = async (nextPage, refresh = false) => {
     const results = await getNotifications.get(user.token, nextPage);
     if (results.data.success == "0") {
       return setIsLoading(false);
     }
     setPage(results.data.nextPage);
     if (results.data.data.length > 0) {
-      setMessages([...messages, ...results.data.data]);
+      refresh ? setMessages([...results.data.data]) : setMessages([...messages, ...results.data.data]);
     }
     setTotalNotificaiton(results.data.unseen);
     setIsLoading(false);
   };
   const loadNotification_local = async (nextPage) => {
     setIsLoading(true);
-    const results = await cache.get(
-      "/getNotification.php?token=" +
-        user.token +
-        "&page=" +
-        nextPage +
-        "&limit=20"
-    );
+    const results = await cache.get("/getNotification.php?token=" + user.token + "&page=" + nextPage + "&limit=20");
     setMessages([...messages, ...results.data]);
     setTotalNotificaiton(results.data.unseen);
     setIsLoading(false);
@@ -61,16 +55,12 @@ function NotificationScreen(props) {
     loadNotification_local("1");
     loadNotification(1);
     navigator.setOptions({
-      title: (
-        <Text style={{ fontFamily: "Tjw_reg" }}>
-          الاشعارات ({totalNotificaiton})
-        </Text>
-      ),
+      title: <Text style={{ fontFamily: "Tjw_reg" }}>الاشعارات ({totalNotificaiton})</Text>,
     });
   }, []);
   const refreshingMethod = () => {
     setRefreshing(true);
-    loadNotification("1");
+    loadNotification("1", true);
     setRefreshing(false);
   };
 
@@ -94,9 +84,10 @@ function NotificationScreen(props) {
       <View style={{ paddingTop: 5 }}>
         <FlatList
           data={messages}
-          keyExtractor={(item) =>
-            `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()
-          }
+          keyExtractor={(item) => `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()}
+          ListEmptyComponent={() => (
+            <Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Tjw_reg" }}>لايوجد بيانات</Text>
+          )}
           renderItem={({ item }) => (
             <ListItem
               title={`${item.title} - ${item.order_no}`}

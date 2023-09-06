@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import * as Notifications from "expo-notifications";
@@ -17,6 +17,13 @@ import colors from "../config/colors";
 import Routes from "../Routes";
 
 const Tab = createBottomTabNavigator();
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 const AppNavigator = (ref) => {
   const { user } = useAuth();
   const navitation = useNavigation();
@@ -31,7 +38,7 @@ const AppNavigator = (ref) => {
   useEffect(() => {
     if (lastNotificationResponse) {
       var id = lastNotificationResponse.notification.request.content.data.id;
-      console.log("Noti ORDER ID", lastNotificationResponse.notification.request.content.data.id);
+      console.log("Noti ORDER ID", lastNotificationResponse.notification.request.content.data);
       id &&
         navitation.navigate(Routes.ORDER_DETAILS, {
           id: id,
@@ -39,44 +46,40 @@ const AppNavigator = (ref) => {
         });
     }
   }, [lastNotificationResponse]);
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) => expoPushTokenApi.register(user.token, token));
+  }, []);
+  async function registerForPushNotificationsAsync() {
+    let token;
 
-  const regesterForPushNotificaition = async () => {
-    try {
-      let experienceId = undefined;
-      if (!Constants.manifest) {
-        // Absence of the manifest means we're in bare workflow
-        experienceId = "@username/clientExpo";
-      }
-      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    if (Platform.OS === "android") {
+      await Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: "#FF231F7C",
+      });
+    }
 
+    if (Device.isDevice) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
       if (existingStatus !== "granted") {
-        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+        const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;
       }
       if (finalStatus !== "granted") {
         alert("Failed to get push token for push notification!");
         return;
       }
-      const token = await Notifications.getExpoPushTokenAsync({
-        projectId: "b1d9e063-3d91-4f7c-8342-bae2dfd80d60",
-        experienceId,
-      });
-      await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
-      if (Platform.OS === "android") {
-        Notifications.setNotificationChannelAsync(`alnahr_user_id_${user.data.id}`, {
-          name: `alnahr_user_id_${user.data.id}`,
-          sound: true,
-          importance: Notifications.AndroidImportance.MAX,
-          vibrationPattern: [0, 250, 250, 250],
-          lightColor: "#FF231F7C",
-        });
-      }
-    } catch (error) {
-      console.log("Error getting a push token", error);
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log("token", token);
+    } else {
+      alert("Must use physical device for Push Notifications");
     }
-  };
-  regesterForPushNotificaition();
+
+    return token;
+  }
   return (
     <Tab.Navigator
       activeColor={colors.vueColorButtom}

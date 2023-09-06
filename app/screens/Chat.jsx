@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import cache from "../utility/cache";
 
 import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorSimpleLine";
 import getChatListAPI from "../api/getChatList";
-// import AppText from "../components/AppText";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import useAuth from "../auth/useAuth";
 import Routes from "../Routes";
-import AppText from "../components/AppText";
 
 function NotificationScreen(props) {
   const [messages, setMessages] = useState([]);
@@ -30,7 +28,6 @@ function NotificationScreen(props) {
     setMessages([...results.data.data]);
     setTotalNotificaiton(results.data.count);
     setIsLoading(false);
-    
   };
   const loadNotification_local = async () => {
     setIsLoading(true);
@@ -41,7 +38,7 @@ function NotificationScreen(props) {
   };
   useEffect(() => {
     loadNotification_local();
-    
+
     loadNotification();
   }, []);
   return (
@@ -62,10 +59,11 @@ function NotificationScreen(props) {
                   ? require("../assets/notifications/chatBlue.png")
                   : require("../assets/notifications/chatRed.png")
               }
-              onPress={() =>
-                navigator.navigate(Routes.CHAT_MODEL, { id: item.id })
-              }
+              onPress={() => navigator.navigate(Routes.CHAT_MODEL, { id: item.id })}
             />
+          )}
+          ListEmptyComponent={() => (
+            <Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Tjw_reg" }}>لايوجد بيانات</Text>
           )}
           ItemSeparatorComponent={ListItemSeparator}
         />

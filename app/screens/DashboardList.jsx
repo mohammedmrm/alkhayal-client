@@ -1,33 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Linking,
-  Animated,
-  Dimensions,
-  Pressable,
-  Modal,
-} from "react-native";
+import { View, FlatList, StyleSheet, Linking, Animated, Dimensions, Pressable, Modal } from "react-native";
 import { Searchbar } from "react-native-paper";
-import {
-  Select,
-  SelectItem,
-  Card,
-  Text,
-  Spinner,
-  Button,
-} from "@ui-kitten/components";
+import { Select, SelectItem, Card, Text, Spinner, Button } from "@ui-kitten/components";
 import cache from "../utility/cache";
 
 import ActivityIndecatorLoadingList from "../components/ActivtyIndectors/ActivityIndecatorLoadingList";
-import {
-  OrderCard,
-  ListItemSeparator,
-  QuckViewDetails,
-  QuckViewDetails2,
-  OrderSheet,
-} from "../components/lists";
+import { OrderCard, ListItemSeparator, QuckViewDetails, QuckViewDetails2, OrderSheet } from "../components/lists";
 import { handleCopy } from "../utility/helper";
 import getOrders from "../api/categoryOrders";
 import useAuth from "../auth/useAuth";
@@ -99,12 +77,7 @@ function Dashboard() {
   //=================token, status, city, store, search, page = 1, limit = 10===========
   const loadOrders_local = async (nextPage) => {
     const results = await cache.get(
-      "/getOrders.php?token=" +
-        user.token +
-        "&status=" +
-        route.params.action +
-        "&limit=10&page=" +
-        nextPage
+      "/getOrders.php?token=" + user.token + "&status=" + route.params.action + "&limit=10&page=" + nextPage
     );
     if (results.data.length < 1) {
       return setIsLoading(false);
@@ -257,11 +230,7 @@ function Dashboard() {
             style={{ direction: "rtl" }}
           >
             {stores.map((item) => (
-              <SelectItem
-                title={item.name}
-                key={Date.now() + Math.random()}
-                style={{ direction: "rtl" }}
-              />
+              <SelectItem title={item.name} key={Date.now() + Math.random()} style={{ direction: "rtl" }} />
             ))}
           </Select>
         </View>
@@ -284,9 +253,7 @@ function Dashboard() {
             loadOrders("1");
           }}
         >
-          {(evaProps) => (
-            <Text {...evaProps}> أبحث في ({noOrders}) طلبية </Text>
-          )}
+          {(evaProps) => <Text {...evaProps}> أبحث في ({noOrders}) طلبية </Text>}
         </Button>
       </View>
       <FlatList
@@ -303,12 +270,7 @@ function Dashboard() {
                 notify_id: "",
               });
             }}
-            renderRightActions={() => (
-              <QuckViewDetails
-                icon="content-copy"
-                onPress={() => handleCopy(item)}
-              />
-            )}
+            renderRightActions={() => <QuckViewDetails icon="content-copy" onPress={() => handleCopy(item)} />}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
@@ -316,13 +278,12 @@ function Dashboard() {
         onEndReached={() => onEndReachedMohamed()}
         refreshing={refreshing}
         onRefresh={() => refreshingMethod()}
+        ListEmptyComponent={() => (
+          <Text style={{ alignSelf: "center", fontSize: 20, fontFamily: "Tjw_reg" }}>لايوجد بيانات</Text>
+        )}
         ListFooterComponent={footer}
       />
-      <Modal
-        onBackdropPress={() => setVisible(false)}
-        backdropStyle={styles.backdrop}
-        visible={visible}
-      >
+      <Modal onBackdropPress={() => setVisible(false)} backdropStyle={styles.backdrop} visible={visible}>
         <Card disabled={true}>
           <Text> 😻 تم نسخ المعلومات</Text>
         </Card>
@@ -340,10 +301,7 @@ function Dashboard() {
           <View style={styles.modalView}>
             {renderHeader()}
             <OrderSheet order={order} />
-            <Pressable
-              style={[styles.button]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
+            <Pressable style={[styles.button]} onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>اخفاء</Text>
             </Pressable>
           </View>
