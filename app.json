@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "سهم النابل - العميل",
-    "slug": "sahamalnabelClient",
+    "name": "The fast",
+    "slug": "alzaimClinetHelper",
     "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
@@ -32,7 +32,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sahamalnabel.client",
+      "bundleIdentifier": "com.alzaim.Client.helper",
       "buildNumber": "1.0.3"
     },
     "android": {
@@ -41,7 +41,7 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.sahamalnabel.client",
+      "package": "com.alzaim.Client.helper",
       "versionCode": 2
     },
     "web": {
@@ -55,7 +55,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "b1d9e063-3d91-4f7c-8342-bae2dfd80d60"
+        "projectId": "50858777-a616-4673-87eb-ede4dd81bfaa"
       }
     }
   }
