@@ -1,19 +1,19 @@
 import Constants from "expo-constants";
 const settings = {
   dev: {
-    apiUrl: "http://sahamalnabel.com/client/api",
+    apiUrl: "http://ec2-3-137-158-198.us-east-2.compute.amazonaws.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "سهم النابل",
+    companyName: "شركة السرعه",
   },
   staging: {
-    apiUrl: "http://sahamalnabel.com/client/api",
+    apiUrl: "http://ec2-3-137-158-198.us-east-2.compute.amazonaws.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "سهم النابل",
+    companyName: "شركة السرعه",
   },
   prod: {
-    apiUrl: "http://sahamalnabel.com/client/api",
+    apiUrl: "http://ec2-3-137-158-198.us-east-2.compute.amazonaws.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "سهم النابل",
+    companyName: "شركة السرعه",
   },
 };
 

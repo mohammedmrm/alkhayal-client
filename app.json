@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "سهم النابل - العميل",
-    "slug": "sahamalnabelClient",
-    "version": "1.0.3",
+    "name": "شركة السرعه  - العميل",
+    "slug": "speedcomClient",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -32,7 +32,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sahamalnabel.client",
+      "bundleIdentifier": "com.speedcom.client",
       "buildNumber": "1.0.3"
     },
     "android": {
@@ -41,7 +41,7 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.sahamalnabel.client",
+      "package": "com.speedcom.client",
       "versionCode": 2
     },
     "web": {
@@ -55,7 +55,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "b1d9e063-3d91-4f7c-8342-bae2dfd80d60"
+        "projectId": "a601b8bd-bdd0-41c9-8367-558b91c88fd7"
       }
     }
   }
