@@ -2,7 +2,7 @@
   "expo": {
     "name": "شركة سرعه  - العميل",
     "slug": "speedcomClient",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -33,7 +33,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.speedcom.client",
-      "buildNumber": "1.0.3"
+      "buildNumber": "1.0.4"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -42,7 +42,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.speedcom.client",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./app/assets/logo/logo.png"
