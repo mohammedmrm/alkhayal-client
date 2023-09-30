@@ -76,6 +76,17 @@ const OrderDetails = () => {
                       {order?.order_status}
                     </Text>
                   </View>
+                  <TouchableWithoutFeedback
+                    onPress={() => startChating(order?.id)}
+                  >
+                    <View style={styles.chatShadow}>
+                      <Icon
+                        name={"message-bulleted"}
+                        size={80}
+                        iconColor={"#de3456"}
+                      />
+                    </View>
+                  </TouchableWithoutFeedback>
                   <Text style={styles.titleOrderId}>{order?.order_no}</Text>
                 </View>
               </View>
@@ -151,16 +162,6 @@ const OrderDetails = () => {
                 )}
               </View>
             </View>
-            <TouchableWithoutFeedback onPress={() => startChating(order?.id)}>
-              <View style={styles.chatShadow}>
-                <Icon
-                  name={"message-bulleted"}
-                  size={70}
-                  iconColor={"#de3456"}
-                  backgroundColor={colors.white}
-                />
-              </View>
-            </TouchableWithoutFeedback>
             <ScrollView>
               {order?.tracking &&
                 order?.tracking.map((item) => (
@@ -231,20 +232,7 @@ const styles = StyleSheet.create({
   chatShadow: {
     width: 70,
     height: 70,
-    position: "absolute",
-    top: 150,
-    left: 30,
     color: colors.danger,
-    borderRadius: borderRadiuss.Radius_larg,
-    shadowColor: colors.black,
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    padding: 10,
-    margin: 5,
   },
   chatIcon: {
     color: colors.danger,

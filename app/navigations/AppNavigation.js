@@ -83,6 +83,7 @@ const AppNavigator = (ref) => {
           }
         );
       }
+      console.log(token);
     } catch (error) {
       console.log("Error getting a push token", error);
     }

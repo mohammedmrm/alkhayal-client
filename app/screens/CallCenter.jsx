@@ -13,14 +13,14 @@ import borderRadiuss from "../config/borderRadiuss";
 const menuItems = [
   {
     title: "خدمة العملاء",
-    subTitle: "07712319656",
+    subTitle: "077111111111",
     img: require("../assets/avatar/call-center-agent.png"),
 
     targetScreen: routes.CHAT,
   },
   {
     title: "خدمة العملاء",
-    subTitle: "07710566966",
+    subTitle: "07700000000",
     img: require("../assets/avatar/24-hours-support.png"),
 
     targetScreen: routes.CHAT,

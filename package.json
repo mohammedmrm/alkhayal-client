@@ -1,6 +1,6 @@
 {
-  "name": "alkhayal-clinet",
-  "version": "1.0.2",
+  "name": "jwhara-clinet",
+  "version": "1.0.4",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",

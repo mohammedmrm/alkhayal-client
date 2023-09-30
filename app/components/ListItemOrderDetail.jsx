@@ -14,18 +14,34 @@ const ListItemOrderDetail = ({ caption, details, onPress = false }) => {
       </View>
       <View style={styles.textView2}>
         {onPress ? (
-          <Text
-            onPress={() => {
-              Linking.openURL(`tel:${details}`);
-            }}
-            style={{
-              ...styles.text,
-              color: colors.secondery,
-              textDecorationLine: "underline",
-            }}
-          >
-            {details}
-          </Text>
+          <>
+            <Text>
+              <Text
+                onPress={() => {
+                  Linking.openURL(`tel:${details}`);
+                }}
+                style={{
+                  ...styles.text,
+                  color: colors.secondery,
+                  textDecorationLine: "none",
+                }}
+              >
+                {details + "   "}
+              </Text>
+              <Text
+                onPress={() => {
+                  Linking.openURL(`https://wa.me/+964${parseInt(details)}`);
+                }}
+                style={{
+                  ...styles.text,
+                  color: colors.success,
+                  textDecorationLine: "none",
+                }}
+              >
+                واتساب
+              </Text>
+            </Text>
+          </>
         ) : (
           <Text style={styles.text}>
             {details && numberWithCommas(details)}
