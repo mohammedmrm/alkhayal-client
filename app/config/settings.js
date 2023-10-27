@@ -1,19 +1,19 @@
 import Constants from "expo-constants";
 const settings = {
   dev: {
-    apiUrl: "http://ec2-3-137-158-198.us-east-2.compute.amazonaws.com/client/api",
+    apiUrl: "http://almalkexpress.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "شركة سرعه",
+    companyName: "الملك",
   },
   staging: {
-    apiUrl: "http://ec2-3-137-158-198.us-east-2.compute.amazonaws.com/client/api",
+    apiUrl: "http://almalkexpress.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "شركة سرعه",
+    companyName: "الملك",
   },
   prod: {
-    apiUrl: "http://ec2-3-137-158-198.us-east-2.compute.amazonaws.com/client/api",
+    apiUrl: "http://almalkexpress.com/client/api",
     logo: require("../assets/logo/logo.png"),
-    companyName: "شركة سرعه",
+    companyName: "الملك",
   },
 };
 

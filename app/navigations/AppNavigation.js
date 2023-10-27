@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
-import Constants from "expo-constants";
-import { Platform, Text } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
-import SearchResults from "./../navigations/SearchNavigator";
-import NotificationsNavigator from "./NotificationsNavigator";
-import DashboardNavigator from "./DashboardNavigator";
+import * as Notifications from "expo-notifications";
+import React, { useEffect } from "react";
+import { Platform, Text } from "react-native";
+import Routes from "../Routes";
 import expoPushTokenApi from "../api/expoPushTokens";
-import ChatNavigator from "./ChatNavigator";
-import Profile from "./../screens/Profile";
 import useAuth from "../auth/useAuth";
 import colors from "../config/colors";
-import Routes from "../Routes";
+import SearchResults from "./../navigations/SearchNavigator";
+import Profile from "./../screens/Profile";
+import ChatNavigator from "./ChatNavigator";
+import DashboardNavigator from "./DashboardNavigator";
+import NotificationsNavigator from "./NotificationsNavigator";
 
 const Tab = createBottomTabNavigator();
 Notifications.setNotificationHandler({
