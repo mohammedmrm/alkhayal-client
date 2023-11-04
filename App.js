@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { useFonts } from "expo-font";
 import * as eva from "@eva-design/eva";
+import { NavigationContainer } from "@react-navigation/native";
 import { ApplicationProvider } from "@ui-kitten/components";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import React, { useCallback, useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import navigationTheme from "./app/navigations/NavigationTheme";
-import AppNavigator from "./app/navigations/AppNavigation";
-import AuthNavigator from "./app/navigations/AuthNavigator";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import OfflineNotice from "./app/components/OfflineNotice";
-import * as SplashScreen from "expo-splash-screen";
+import AppNavigator from "./app/navigations/AppNavigation";
+import AuthNavigator from "./app/navigations/AuthNavigator";
+import navigationTheme from "./app/navigations/NavigationTheme";
 import { navigationRef } from "./app/navigations/rootNavigation";
 
 export default function App() {
