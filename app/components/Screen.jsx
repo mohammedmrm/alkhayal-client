@@ -1,5 +1,4 @@
 import React from "react";
-import Constants from "expo-constants";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, SafeAreaView } from "react-native";
 Screen = ({ children, ...otherProps }) => {

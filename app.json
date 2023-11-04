@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "الملك - العميل",
-    "slug": "alamenClient",
-    "version": "1.0.2",
+    "slug": "malkClient",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -32,8 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alamen.client",
-      "buildNumber": "1.0.2"
+      "bundleIdentifier": "com.malk.client",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -41,8 +41,7 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "useNextNotificationsApi": true,
-      "package": "com.alamen.client",
+      "package": "com.malk.client",
       "versionCode": 3
     },
     "web": {
@@ -56,7 +55,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "c79d5808-469c-4a83-a6e7-9b832212899f"
+        "projectId": "c7d93515-fc17-43e1-bf1c-a1666bb24d6d"
       }
     }
   }

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider } from "@ui-kitten/components";
-import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import navigationTheme from "./app/navigations/NavigationTheme";
 import AppNavigator from "./app/navigations/AppNavigation";
 import AuthNavigator from "./app/navigations/AuthNavigator";
@@ -27,42 +26,53 @@ export default function App() {
     Tjw_Ereg: require("./app/assets/fonts/Cairo-ExtraLight.ttf"),
   });
   const restoreUser = async () => {
-    const user = await authStorage.getUser();
-
-    if (user.code != "300") setUser(user);
+    authStorage.getUser().then((user) => {
+      if (user && user.code && user.code !== "300") {
+        setUser(user);
+      }
+    });
   };
-
-  if (!isReady)
-    return (
-      <AppLoading
-        startAsync={restoreUser}
-        onFinish={async () => {
+  useEffect(() => {
+    const prepare = () => {
+      restoreUser()
+        .catch((e) => console.log(e))
+        .finally(() => {
           setIsReady(true);
-          await SplashScreen.hideAsync();
-        }}
-        onError={(e) => console.log(e)}
-      />
-    );
+        });
+    };
+    prepare();
+  }, []);
 
-  if (!loaded) {
+  const onLayoutRootView = useCallback(async () => {
+    if (isReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [isReady]);
+  useEffect(() => {
+    onLayoutRootView();
+  }, [isReady]);
+
+  if (!isReady || !loaded) {
     return null;
   }
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <OfflineNotice />
-      <NavigationContainer ref={navigationRef} theme={navigationTheme}>
-        {user ? (
-          user.token ? (
-            <ApplicationProvider {...eva} theme={eva.light}>
-              <AppNavigator />
-            </ApplicationProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AuthContext.Provider value={{ user, setUser }}>
+        <OfflineNotice />
+        <NavigationContainer ref={navigationRef} theme={navigationTheme}>
+          {user ? (
+            user.token ? (
+              <ApplicationProvider {...eva} theme={eva.light}>
+                <AppNavigator />
+              </ApplicationProvider>
+            ) : (
+              <AuthNavigator />
+            )
           ) : (
             <AuthNavigator />
-          )
-        ) : (
-          <AuthNavigator />
-        )}
-      </NavigationContainer>
-    </AuthContext.Provider>
+          )}
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </GestureHandlerRootView>
   );
 }

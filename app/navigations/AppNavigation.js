@@ -1,27 +1,25 @@
-import React, { useEffect, useRef } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
+import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
-import Constants from "expo-constants";
+import React, { useEffect } from "react";
 import { Platform, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import SearchResults from "./../navigations/SearchNavigator";
-import NotificationsNavigator from "./NotificationsNavigator";
-import DashboardNavigator from "./DashboardNavigator";
+import Routes from "../Routes";
 import expoPushTokenApi from "../api/expoPushTokens";
-import ChatNavigator from "./ChatNavigator";
-import Profile from "./../screens/Profile";
 import useAuth from "../auth/useAuth";
 import colors from "../config/colors";
-import Routes from "../Routes";
+import SearchResults from "./../navigations/SearchNavigator";
+import Profile from "./../screens/Profile";
+import ChatNavigator from "./ChatNavigator";
+import DashboardNavigator from "./DashboardNavigator";
+import NotificationsNavigator from "./NotificationsNavigator";
 
 const Tab = createBottomTabNavigator();
 const AppNavigator = (ref) => {
   const { user } = useAuth();
   const navitation = useNavigation();
-  const notificationListener = useRef();
-  const responseListener = useRef();
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -33,10 +31,7 @@ const AppNavigator = (ref) => {
   useEffect(() => {
     if (lastNotificationResponse) {
       var id = lastNotificationResponse.notification.request.content.data.id;
-      console.log(
-        "Noti ORDER ID",
-        lastNotificationResponse.notification.request.content.data.id
-      );
+      console.log("Noti ORDER ID", lastNotificationResponse.notification.request.content.data.id);
       id &&
         navitation.navigate(Routes.ORDER_DETAILS, {
           id: id,
@@ -48,19 +43,15 @@ const AppNavigator = (ref) => {
   const regesterForPushNotificaition = async () => {
     try {
       let experienceId = undefined;
-      if (!Constants.manifest) {
+      if (!Constants.expoConfig) {
         // Absence of the manifest means we're in bare workflow
         experienceId = "@username/clientExpo";
       }
-      const { status: existingStatus } = await Permissions.getAsync(
-        Permissions.NOTIFICATIONS
-      );
+      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 
       let finalStatus = existingStatus;
       if (existingStatus !== "granted") {
-        const { status } = await Permissions.askAsync(
-          Permissions.NOTIFICATIONS
-        );
+        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
         finalStatus = status;
       }
       if (finalStatus !== "granted") {
@@ -69,26 +60,26 @@ const AppNavigator = (ref) => {
       }
       const token = await Notifications.getExpoPushTokenAsync({
         experienceId,
+        projectId: "c7d93515-fc17-43e1-bf1c-a1666bb24d6d",
       });
       await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
       if (Platform.OS === "android") {
-        Notifications.setNotificationChannelAsync(
-          `alnahr_user_id_${user.data.id}`,
-          {
-            name: `alnahr_user_id_${user.data.id}`,
-            sound: true,
-            importance: Notifications.AndroidImportance.MAX,
-            vibrationPattern: [0, 250, 250, 250],
-            lightColor: "#FF231F7C",
-          }
-        );
+        Notifications.setNotificationChannelAsync(`alnahr_user_id_${user.data.id}`, {
+          name: `alnahr_user_id_${user.data.id}`,
+          sound: true,
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: "#FF231F7C",
+        });
       }
       console.log(token);
     } catch (error) {
       console.log("Error getting a push token", error);
     }
   };
-  regesterForPushNotificaition();
+  useEffect(() => {
+    regesterForPushNotificaition();
+  }, []);
   return (
     <Tab.Navigator
       activeColor={colors.vueColorButtom}
@@ -103,9 +94,7 @@ const AppNavigator = (ref) => {
           headerShown: false,
           // tabBarLabel: "بحث",
           tabBarLabel: () => null,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="search" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="search" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -115,9 +104,7 @@ const AppNavigator = (ref) => {
           headerShown: false,
           // tabBarLabel: "اشعاراتي",
           tabBarLabel: () => null,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="bell" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="bell" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -127,9 +114,7 @@ const AppNavigator = (ref) => {
           tabBarLabel: () => null,
           headerShown: false,
           // tabBarLabel: "لوحة التحكم",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="home" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="home" color={color} size={size} />,
           // tabBarButton: () => (
           //   <DashboardButton
           //     onPress={() => navigation.navigate(Routes.DASHBOARD)}
@@ -145,9 +130,7 @@ const AppNavigator = (ref) => {
           headerShown: false,
           tabBarLabel: () => null,
           //tabBarLabel: "محادثتي",
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="message-circle" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="message-circle" color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -157,9 +140,7 @@ const AppNavigator = (ref) => {
           // headerShown: false,
           tabBarLabel: () => null,
           title: <Text style={{ fontFamily: "Tjw_reg" }}>الصفحة الشخصية</Text>,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="user" color={color} size={size} />
-          ),
+          tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
         }}
       />
     </Tab.Navigator>
