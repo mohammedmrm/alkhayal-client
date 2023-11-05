@@ -1,9 +1,9 @@
 import { Feather } from "@expo/vector-icons";
-import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, Linking, StyleSheet, View } from "react-native";
 import { Paragraph, Title } from "react-native-paper";
-import { ListItem, ListItemSeparator } from "../components/lists";
-import colors from "../config/colors";
+import getCallCenter from "../api/getCallCenter";
+import useAuth from "../auth/useAuth";
 import Screen from "../components/Screen";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import borderRadiuss from "../config/borderRadiuss";
@@ -12,9 +12,15 @@ import colors from "../config/colors";
 function CallCenter() {
   const { user } = useAuth();
   const [callcenter, setCallCenter] = useState([]);
-  const getCall = async () => {
-    const results = await getCallcenter.getCallCenter(user.token);
-    setCallCenter([...results.data.data]);
+  const getCall = () => {
+    getCallCenter
+      .getCallCenter(user.token)
+      .then((e) => {
+        setCallCenter([...e.data.data]);
+      })
+      .catch((e) => {
+        setCallCenter([]);
+      });
   };
   useEffect(() => {
     getCall();

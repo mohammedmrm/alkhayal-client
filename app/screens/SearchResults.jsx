@@ -20,7 +20,7 @@ import ActivityIndecatorLoadingList from "../components/ActivtyIndectors/Activit
 import Screen from "../components/Screen";
 
 //-------------------------------------------------------------------------
-function SearchResults() {
+function SearchResult() {
   let { user } = useAuth();
   const navigator = useNavigation();
   const [order, setOrder] = useState(null);
@@ -333,4 +333,4 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
-export default SearchResults;
+export default SearchResult;
