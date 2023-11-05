@@ -1,16 +1,17 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
 
-const Dashboard = () => {
-    return (
-        <View
-            style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center"
-            }}>
-            <Text>change password</Text>
-        </View>
-    )
-}
-export default Dashboard;
+const ChangePassword = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text>Change password</Text>
+    </View>
+  );
+};
+export default ChangePassword;

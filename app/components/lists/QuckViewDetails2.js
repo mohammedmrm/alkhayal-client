@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 import borderRadiuss from "../../config/borderRadiuss";
 
-function ListItemDeleteAction({ onPress, icon, color }) {
+function ListItemDeleteAction({ onPress, icon, color = "#ffffff" }) {
   return (
     <TouchableHighlight style={styles.containerT} onPress={onPress}>
       <View style={styles.container}>

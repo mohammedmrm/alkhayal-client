@@ -1,14 +1,13 @@
-import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import React from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Paragraph, Title } from "react-native-paper";
-
-import { ListItem, ListItemSeparator } from "../components/lists";
-import colors from "../config/colors";
+import { Linking } from "react-native";
 import routes from "../Routes";
 import Screen from "../components/Screen";
-import { Linking } from "react-native";
+import { ListItem, ListItemSeparator } from "../components/lists";
 import borderRadiuss from "../config/borderRadiuss";
+import colors from "../config/colors";
 
 const menuItems = [
   {
@@ -25,19 +24,6 @@ const menuItems = [
 
     targetScreen: routes.CHAT,
   },
-  // {
-  //     title: "بصرة, أربيل, سليمانية",
-  //     subTitle: "07835723018",
-  //     img: require("../assets/avatar/24-hours-suppor.png"),
-
-  //     targetScreen: routes.CHAT,
-  // },
-  // {
-  //     title: "ديوانية, موصل, بابل, كوت",
-  //     subTitle: "07835723019",
-  //     img: require("../assets/avatar/woman-with-headset.png"),
-  //     targetScreen: routes.CHAT,
-  // },
 ];
 
 function CallCenter() {
@@ -83,8 +69,7 @@ function CallCenter() {
             fontSize: 14,
           }}
         >
-          نحن هنا من اجل مساعدتك اضغط مباشرتا على القسم المطلوب وسوف تتصل بالشخص
-          المسوؤل لحل طلبك
+          نحن هنا من اجل مساعدتك اضغط مباشرتا على القسم المطلوب وسوف تتصل بالشخص المسوؤل لحل طلبك
         </Paragraph>
       </View>
 

@@ -5,7 +5,7 @@ import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import React, { useEffect } from "react";
-import { Platform, Text } from "react-native";
+import { Platform } from "react-native";
 import Routes from "../Routes";
 import expoPushTokenApi from "../api/expoPushTokens";
 import useAuth from "../auth/useAuth";
@@ -72,7 +72,6 @@ const AppNavigator = (ref) => {
           lightColor: "#FF231F7C",
         });
       }
-      console.log(token);
     } catch (error) {
       console.log("Error getting a push token", error);
     }
@@ -80,6 +79,7 @@ const AppNavigator = (ref) => {
   useEffect(() => {
     regesterForPushNotificaition();
   }, []);
+
   return (
     <Tab.Navigator
       activeColor={colors.vueColorButtom}
@@ -92,8 +92,8 @@ const AppNavigator = (ref) => {
         component={SearchResults}
         options={{
           headerShown: false,
-          // tabBarLabel: "بحث",
           tabBarLabel: () => null,
+          //tabBarLabel: "بحث",
           tabBarIcon: ({ color, size }) => <Feather name="search" color={color} size={size} />,
         }}
       />
@@ -102,8 +102,8 @@ const AppNavigator = (ref) => {
         component={NotificationsNavigator}
         options={{
           headerShown: false,
-          // tabBarLabel: "اشعاراتي",
           tabBarLabel: () => null,
+          //tabBarLabel: "اشعاراتي",
           tabBarIcon: ({ color, size }) => <Feather name="bell" color={color} size={size} />,
         }}
       />
@@ -111,15 +111,10 @@ const AppNavigator = (ref) => {
         name={Routes.DASHBOARD}
         component={DashboardNavigator}
         options={({ navigation }) => ({
-          tabBarLabel: () => null,
           headerShown: false,
-          // tabBarLabel: "لوحة التحكم",
+          tabBarLabel: () => null,
+          //tabBarLabel: "لوحة التحكم",
           tabBarIcon: ({ color, size }) => <Feather name="home" color={color} size={size} />,
-          // tabBarButton: () => (
-          //   <DashboardButton
-          //     onPress={() => navigation.navigate(Routes.DASHBOARD)}
-          //   />
-          // ),
         })}
       />
 
@@ -137,9 +132,9 @@ const AppNavigator = (ref) => {
         name={Routes.PROFILE}
         component={Profile}
         options={{
-          // headerShown: false,
+          headerShown: false,
           tabBarLabel: () => null,
-          title: <Text style={{ fontFamily: "Tjw_reg" }}>الصفحة الشخصية</Text>,
+          //tabBarLabel: "الصفحة الشخصية",
           tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
         }}
       />

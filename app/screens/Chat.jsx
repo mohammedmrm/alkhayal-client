@@ -13,7 +13,7 @@ import useAuth from "../auth/useAuth";
 import Routes from "../Routes";
 import AppText from "../components/AppText";
 
-function NotificationScreen(props) {
+function ChatScreen(props) {
   const [messages, setMessages] = useState([]);
   const [totalNotificaiton, setTotalNotificaiton] = useState(0);
   const navigator = useNavigation();
@@ -30,7 +30,6 @@ function NotificationScreen(props) {
     setMessages([...results.data.data]);
     setTotalNotificaiton(results.data.count);
     setIsLoading(false);
-    
   };
   const loadNotification_local = async () => {
     setIsLoading(true);
@@ -41,7 +40,7 @@ function NotificationScreen(props) {
   };
   useEffect(() => {
     loadNotification_local();
-    
+
     loadNotification();
   }, []);
   return (
@@ -62,9 +61,7 @@ function NotificationScreen(props) {
                   ? require("../assets/notifications/chatBlue.png")
                   : require("../assets/notifications/chatRed.png")
               }
-              onPress={() =>
-                navigator.navigate(Routes.CHAT_MODEL, { id: item.id })
-              }
+              onPress={() => navigator.navigate(Routes.CHAT_MODEL, { id: item.id })}
             />
           )}
           ItemSeparatorComponent={ListItemSeparator}
@@ -73,4 +70,4 @@ function NotificationScreen(props) {
     </Screen>
   );
 }
-export default NotificationScreen;
+export default ChatScreen;

@@ -1,28 +1,21 @@
-import React, { useRef, useCallback, useEffect, useState } from "react";
-import {
-  ScrollView,
-  RefreshControl,
-  Pressable,
-  View,
-  Animated,
-  Image,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Headline, Title } from "react-native-paper";
 import { Feather } from "@expo/vector-icons";
-import SummaryBoxes from "../components/dashboard/SummaryBoxes";
-import OptionsList from "../components/dashboard/OptionsList";
-import Screen from "../components/Screen";
-import getAdsAPI from "../api/getAds";
-import useAuth from "../auth/useAuth";
-import getStatistic from "../api/getSummayBoxed";
-import colors from "../config/colors";
-import settings from "../config/settings";
-import Routes from "../Routes";
-import borderRadiuss from "../config/borderRadiuss";
-import cache from "../utility/cache";
+import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
 import * as SplashScreen from "expo-splash-screen";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Animated, Image, Pressable, RefreshControl, ScrollView, View } from "react-native";
+import { Headline, Title } from "react-native-paper";
+import Routes from "../Routes";
+import getAdsAPI from "../api/getAds";
+import getStatistic from "../api/getSummayBoxed";
+import useAuth from "../auth/useAuth";
+import Screen from "../components/Screen";
+import OptionsList from "../components/dashboard/OptionsList";
+import SummaryBoxes from "../components/dashboard/SummaryBoxes";
+import borderRadiuss from "../config/borderRadiuss";
+import colors from "../config/colors";
+import settings from "../config/settings";
+import cache from "../utility/cache";
 
 SplashScreen.preventAutoHideAsync();
 const Dashboard = () => {
@@ -133,24 +126,9 @@ const Dashboard = () => {
             flexDirection: "row",
           }}
         >
-          {/*<Pressable
-            onPress={() => navigator.navigate(Routes.STATISTICS_PAGE2)}
-          >
-            <Feather
-              name="pie-chart"
-              size={24}
-              color={colors.black}
-              style={{
-                paddingTop: 10,
-                paddingHorizontal: 10,
-              }}
-            />
-            </Pressable>*/}
           <Pressable
             style={{ marginLeft: 10 }}
-            onPress={() =>
-              navigator.navigate(Routes.Ads, { title: adsText.c_ad1 })
-            }
+            onPress={() => navigator.navigate(Routes.Ads, { title: adsText.c_ad1 })}
           >
             <Animated.View
               style={{
@@ -173,11 +151,7 @@ const Dashboard = () => {
           </Pressable>
         </View>
       </View>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
+      <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         {<SummaryBoxes data={calcData} isLoading={isLoading} />}
         <Pressable onPress={() => navigator.navigate(Routes.CALLCENTER)}>
           <View

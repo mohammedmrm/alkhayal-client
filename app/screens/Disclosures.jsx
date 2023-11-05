@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, FlatList, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import {
-  ReportCard,
-  ListItemSeparator,
-  ListOrderCopyAction,
-} from "../components/lists";
+import { ReportCard, ListItemSeparator, ListOrderCopyAction } from "../components/lists";
 import AppPickerCity from "./../components/AppPickerCites";
 import Button from "./../components/AppButton";
 import useAuth from "../auth/useAuth";
@@ -19,7 +15,7 @@ import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorM
 import { onShare } from "../utility/helper";
 import { I18nManager } from "react-native";
 
-function Dashboard() {
+function Disclosures() {
   const navigator = useNavigation();
   let { user } = useAuth();
   const [pdfs, setPdfs] = useState(null);
@@ -34,12 +30,7 @@ function Dashboard() {
 
   const loadPdfs = async () => {
     setIsLoading(true);
-    const results = await getPdfs.getPdfs(
-      user.token,
-      store,
-      startDate ? startDate : null,
-      endDate ? endDate : null
-    );
+    const results = await getPdfs.getPdfs(user.token, store, startDate ? startDate : null, endDate ? endDate : null);
     if (results?.data?.success === "0") {
       return setIsLoading(false);
     }
@@ -121,9 +112,7 @@ function Dashboard() {
             fontFamily: "Tjw_blod",
           }}
         >
-          <Text style={{ fontFamily: "Tjw_blod" }}>
-            مبالغ لم يتم التحاسب عليها بعد
-          </Text>
+          <Text style={{ fontFamily: "Tjw_blod" }}>مبالغ لم يتم التحاسب عليها بعد</Text>
           <View
             style={{
               backgroundColor: colors.white,
@@ -149,17 +138,13 @@ function Dashboard() {
                   }}
                 >
                   <Text style={{ paddingHorizontal: 10 }}> عدد الطلبيات:</Text>
-                  <Text style={{ paddingHorizontal: 10 }}>
-                    {" "}
-                    {total?.orders}
-                  </Text>
+                  <Text style={{ paddingHorizontal: 10 }}> {total?.orders}</Text>
                 </View>
                 <View style={{ flexDirection: "row-reverse" }}>
                   <Text style={{ paddingHorizontal: 10 }}>صافي الحساب:</Text>
                   <Text style={{ paddingHorizontal: 10 }}>
                     {" "}
-                    {total?.client_price &&
-                      numberWithCommas(total?.client_price)}
+                    {total?.client_price && numberWithCommas(total?.client_price)}
                   </Text>
                 </View>
               </>
@@ -175,26 +160,15 @@ function Dashboard() {
           <ReportCard
             item={item}
             onPress={() => navigator.navigate(Routes.PDF_VIEW, { item: item })}
-            renderRightActions={() => (
-              <ListOrderCopyAction
-                icon="share-variant"
-                onPress={() => onShare(item)}
-              />
-            )}
+            renderRightActions={() => <ListOrderCopyAction icon="share-variant" onPress={() => onShare(item)} />}
           />
         )}
         ItemSeparatorComponent={ListItemSeparator}
         refreshing={refreshing}
         onRefresh={() => refreshingMethod()}
       />
-      {isLoading && (
-        <ActivityIndicator
-          animating={isLoading}
-          size="large"
-          hidesWhenStopped={true}
-        />
-      )}
+      {isLoading && <ActivityIndicator animating={isLoading} size="large" hidesWhenStopped={true} />}
     </View>
   );
 }
-export default Dashboard;
+export default Disclosures;

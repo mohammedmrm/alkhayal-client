@@ -1,27 +1,23 @@
-import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
 import { Text } from "react-native";
 
+import Routes from "../Routes";
+import Ads from "../screens/Ads";
+import CallCenter from "../screens/CallCenter";
+import ChatModel from "../screens/ChatModel";
+import Dashboard from "../screens/Dashboard";
 import DashboardList from "../screens/DashboardList";
 import Disclosures from "../screens/Disclosures";
 import OrderDetails from "../screens/OrderDetails";
-import Dashboard from "../screens/Dashboard";
-import Routes from "../Routes";
-import ChatModel from "../screens/ChatModel";
-import PdfViewerScreen from "../screens/pdfViewerScreen";
 import Statistics from "../screens/Statistics";
-import CallCenter from "../screens/CallCenter";
-import Ads from "../screens/Ads";
+import PdfViewerScreen from "../screens/pdfViewerScreen";
 
 const Stack = createStackNavigator();
 const DashboardNavigator = () => {
   return (
     <Stack.Navigator initialRouteName={Routes.DASHBOARD}>
-      <Stack.Screen
-        name={Routes.DASHBOARD}
-        component={Dashboard}
-        options={{ headerShown: false, title: () => null }}
-      />
+      <Stack.Screen name={Routes.DASHBOARD} component={Dashboard} options={{ headerShown: false, title: () => null }} />
 
       <Stack.Screen
         name={Routes.DISCLOSURES}
@@ -41,9 +37,7 @@ const DashboardNavigator = () => {
         name={Routes.CALLCENTER}
         component={CallCenter}
         options={{
-          title: (
-            <Text style={{ fontFamily: "Tjw_reg" }}>هواتف خدمة العملاء</Text>
-          ),
+          title: <Text style={{ fontFamily: "Tjw_reg" }}>هواتف خدمة العملاء</Text>,
         }}
       />
       <Stack.Screen
@@ -78,9 +72,7 @@ const DashboardNavigator = () => {
         name={Routes.DASHBOARD_LIST}
         component={DashboardList}
         options={({ route }) => ({
-          title: (
-            <Text style={{ fontFamily: "Tjw_reg" }}>{route.params.name}</Text>
-          ),
+          title: <Text style={{ fontFamily: "Tjw_reg" }}>{route.params.name}</Text>,
         })}
       />
     </Stack.Navigator>

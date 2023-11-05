@@ -39,12 +39,6 @@ const menuItems = [
 
 function AccountScreen({ navigation }) {
   const { user, logOut } = useAuth();
-  const navigator = useNavigation();
-  const config = {
-    velocityThreshold: 0.3,
-    directionalOffsetThreshold: 80,
-  };
-
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -64,12 +58,7 @@ function AccountScreen({ navigation }) {
             <ListItem
               title={item.title}
               IconComponent={
-                <Icon
-                  name={item.icon.name}
-                  backgroundColor={colors.light4}
-                  size={50}
-                  iconColor={colors.primery}
-                />
+                <Icon name={item.icon.name} backgroundColor={colors.light4} size={50} iconColor={colors.primery} />
               }
               onPress={() => navigation.navigate(item.targetScreen)}
             />
@@ -78,9 +67,7 @@ function AccountScreen({ navigation }) {
       </View>
       <ListItem
         title="تسجيل خروج"
-        IconComponent={
-          <Icon name="logout" iconColor={colors.primery} size={50} />
-        }
+        IconComponent={<Icon name="logout" iconColor={colors.primery} size={50} />}
         onPress={() => logOut()}
       />
     </Screen>

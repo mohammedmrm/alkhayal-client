@@ -1,49 +1,26 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Linking,
-  Animated,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
-import {
-  Select,
-  SelectItem,
-  Modal,
-  Card,
-  Button,
-  Text,
-  Spinner,
-} from "@ui-kitten/components";
 import { useNavigation } from "@react-navigation/native";
-import BottomSheet from "reanimated-bottom-sheet";
+import { Button, Card, Modal, Select, SelectItem, Spinner, Text } from "@ui-kitten/components";
+import React, { useEffect, useState, useRef } from "react";
+import { Animated, Dimensions, FlatList, Linking, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Searchbar } from "react-native-paper";
+import BottomSheet from "reanimated-bottom-sheet";
 import cache from "../utility/cache";
 
-import {
-  OrderCard,
-  ListItemSeparator,
-  QuckViewDetails,
-  QuckViewDetails2,
-  OrderSheet,
-} from "../components/lists";
-import ActivityIndecatorLoadingList from "./../components/ActivtyIndectors/ActivityIndecatorLoadingList";
-import { handleCopy } from "../utility/helper";
-import Screen from "./../components/Screen";
-import getStatues from "../api/getStatues";
-import getCities from "../api/getCities";
-import getStores from "../api/getStores";
-import getOrders from "../api/getOrders";
-import useAuth from "../auth/useAuth";
-import colors from "../config/colors";
 import Routes from "../Routes";
-import { I18nManager } from "react-native";
+import getCities from "../api/getCities";
+import getOrders from "../api/getOrders";
+import getStatues from "../api/getStatues";
+import getStores from "../api/getStores";
+import useAuth from "../auth/useAuth";
+import { ListItemSeparator, OrderCard, OrderSheet, QuckViewDetails, QuckViewDetails2 } from "../components/lists";
+import colors from "../config/colors";
 import settings from "../config/settings";
+import { handleCopy } from "../utility/helper";
+import ActivityIndecatorLoadingList from "../components/ActivtyIndectors/ActivityIndecatorLoadingList";
+import Screen from "../components/Screen";
 
 //-------------------------------------------------------------------------
-function Dashboard() {
+function SearchResults() {
   let { user } = useAuth();
   const navigator = useNavigation();
   const [order, setOrder] = useState(null);
@@ -64,7 +41,7 @@ function Dashboard() {
   const prefix = "SearchResults";
   //==============================(Bottom Sheet)========================================
   const window = Dimensions.get("window");
-  const bs = React.createRef(null);
+  const bs = useRef(null);
   const [state, setState] = useState({
     opacity: new Animated.Value(0),
     isOpen: false,
@@ -119,69 +96,6 @@ function Dashboard() {
     onOpen();
   };
 
-  const renderInner = () => <OrderSheet order={order} />;
-  const renderHeader = () => (
-    <View
-      style={{
-        width: "100%",
-        backgroundColor: colors.light4,
-        height: 50,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        marginLeft: 20,
-        marginRight: 20,
-        alignSelf: "center",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-      }}
-    >
-      <QuckViewDetails2
-        icon="information-outline"
-        onPress={() =>
-          navigator.navigate(Routes.ORDER_DETAILS, {
-            id: order.id,
-          })
-        }
-      />
-      <QuckViewDetails2
-        icon="content-copy"
-        onPress={() => {
-          handleCopy(order);
-          setVisible(true);
-        }}
-      />
-      <QuckViewDetails2
-        icon="chat-outline"
-        onPress={() => {
-          navigator.navigate(Routes.CHAT_MODEL, { id: order.id });
-        }}
-      />
-      <QuckViewDetails2
-        icon="phone"
-        onPress={() => {
-          Linking.openURL(`tel:${order.driver_phone}`);
-        }}
-      />
-      {true ? (
-        <QuckViewDetails2
-          icon="star" //"star-outline"
-          color={colors.pause}
-          onPress={() => {
-            Linking.openURL(`tel:${item.driver_phone}`);
-          }}
-        />
-      ) : (
-        <QuckViewDetails2
-          icon="star-outline"
-          color={colors.secondery}
-          onPress={() => {
-            Linking.openURL(`tel:${item.driver_phone}`);
-          }}
-        />
-      )}
-    </View>
-  );
   const LoadingIndicator = (props) => (
     <View style={[props.style]}>
       <Spinner size="small" />
@@ -212,13 +126,7 @@ function Dashboard() {
     setIsLoading(false);
   };
   const loadOrders_local = async (nextPage) => {
-    const results = await cache.get(
-      settings.apiUrl +
-        "/search.php?token=" +
-        user.token +
-        "&limit=20&page=" +
-        nextPage
-    );
+    const results = await cache.get(settings.apiUrl + "/search.php?token=" + user.token + "&limit=20&page=" + nextPage);
     if (results.data.success === "0") {
       return null;
     }
@@ -321,7 +229,7 @@ function Dashboard() {
             value={city ? cities[city.row].name : "المحافظة"}
             size="small"
             onSelect={(index) => setCity(index)}
-            style={{ direction: "rtl", textAlign: "right" }}
+            style={{ direction: "rtl" }}
           >
             {cities.map((item) => (
               <SelectItem
@@ -344,11 +252,7 @@ function Dashboard() {
             style={{ direction: "rtl" }}
           >
             {statues.map((item) => (
-              <SelectItem
-                key={Date.now() + Math.random()}
-                title={item.name}
-                style={{ direction: "rtl" }}
-              />
+              <SelectItem key={Date.now() + Math.random()} title={item.name} style={{ direction: "rtl" }} />
             ))}
           </Select>
         </View>
@@ -362,11 +266,7 @@ function Dashboard() {
             style={{ direction: "rtl" }}
           >
             {stores.map((item) => (
-              <SelectItem
-                key={Date.now() + Math.random()}
-                title={item.name}
-                style={{ direction: "rtl" }}
-              />
+              <SelectItem key={Date.now() + Math.random()} title={item.name} style={{ direction: "rtl" }} />
             ))}
           </Select>
         </View>
@@ -376,8 +276,7 @@ function Dashboard() {
         size="small"
         status="primary"
         style={{ width: "95%", alignSelf: "center", margin: 5 }}
-        accessoryRight={isLoading ? LoadingIndicator : ""}
-        color="black"
+        accessoryRight={isLoading ? LoadingIndicator : <></>}
         onPress={() => {
           setIsLoading(true);
           loadOrders("1");
@@ -388,9 +287,7 @@ function Dashboard() {
       <FlatList
         style={{ flex: 1, width: "100%" }}
         data={orders}
-        keyExtractor={(item) =>
-          `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()
-        }
+        keyExtractor={(item) => `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()}
         renderItem={({ item }) => (
           <OrderCard
             item={item}
@@ -411,24 +308,6 @@ function Dashboard() {
                     setVisible(true);
                   }}
                 />
-
-                {true ? (
-                  <QuckViewDetails
-                    icon="star" //"star-outline"
-                    color={colors.pause}
-                    onPress={() => {
-                      Linking.openURL(`tel:${item.driver_phone}`);
-                    }}
-                  />
-                ) : (
-                  <QuckViewDetails
-                    icon="star-outline"
-                    color={colors.secondery}
-                    onPress={() => {
-                      Linking.openURL(`tel:${item.driver_phone}`);
-                    }}
-                  />
-                )}
               </>
             )}
           />
@@ -440,30 +319,12 @@ function Dashboard() {
         onRefresh={() => refreshingMethod()}
         ListFooterComponent={footer}
       />
-      <Modal
-        onBackdropPress={() => setVisible(false)}
-        backdropStyle={styles.backdrop}
-        visible={visible}
-      >
+      <Modal onBackdropPress={() => setVisible(false)} backdropStyle={styles.backdrop} visible={visible}>
         <Card disabled={true}>
           <Text> 😻 تم نسخ المعلومات</Text>
         </Card>
       </Modal>
       {state.isOpen && renderBackDrop()}
-
-      <BottomSheet
-        ref={bs}
-        snapPoints={[
-          "-10%",
-          window.height * 0.4,
-          window.height * 0.6,
-          window.height * 0.8,
-        ]}
-        initialSnap={0}
-        renderContent={renderInner}
-        renderHeader={renderHeader}
-        onCloseEnd={onClose}
-      />
     </Screen>
   );
 }
@@ -472,4 +333,4 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
-export default Dashboard;
+export default SearchResults;
