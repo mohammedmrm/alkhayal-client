@@ -9,23 +9,6 @@ import { ListItem, ListItemSeparator } from "../components/lists";
 import borderRadiuss from "../config/borderRadiuss";
 import colors from "../config/colors";
 
-const menuItems = [
-  {
-    title: "خدمة العملاء",
-    subTitle: "077111111111",
-    img: require("../assets/avatar/call-center-agent.png"),
-
-    targetScreen: routes.CHAT,
-  },
-  {
-    title: "خدمة العملاء",
-    subTitle: "07700000000",
-    img: require("../assets/avatar/24-hours-support.png"),
-
-    targetScreen: routes.CHAT,
-  },
-];
-
 function CallCenter() {
   const { user } = useAuth();
   const [callcenter, setCallCenter] = useState([]);
