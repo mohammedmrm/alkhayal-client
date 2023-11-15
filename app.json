@@ -2,7 +2,7 @@
   "expo": {
     "name": "الملك - العميل",
     "slug": "malkClient",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
     "userInterfaceStyle": "light",
@@ -33,7 +33,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.malk.client",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.1"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -42,7 +42,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.malk.client",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./app/assets/logo/logo.png"

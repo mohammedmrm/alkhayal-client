@@ -3,7 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { ApplicationProvider } from "@ui-kitten/components";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Text } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
@@ -43,17 +44,17 @@ export default function App() {
     prepare();
   }, []);
 
-  const onLayoutRootView = useCallback(async () => {
+  const onLayoutRootView = async () => {
     if (isReady) {
       await SplashScreen.hideAsync();
     }
-  }, [isReady]);
+  };
   useEffect(() => {
     onLayoutRootView();
   }, [isReady]);
 
   if (!isReady || !loaded) {
-    return null;
+    return <Text>Loading ...</Text>;
   }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
