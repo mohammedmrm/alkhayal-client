@@ -108,7 +108,7 @@ const AppNavigator = (ref) => {
         }}
       />
       <Tab.Screen
-        name={Routes.DASHBOARD_LIST}
+        name={Routes.DASHBOARD_NAV}
         component={DashboardNavigator}
         options={({ navigation }) => ({
           headerShown: false,
