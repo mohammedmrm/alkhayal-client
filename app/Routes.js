@@ -1,5 +1,6 @@
 export default Object.freeze({
   DASHBOARD: "dashboard",
+  DASHBOARD_NAV: "dashboardNAV",
   CHAT: "chat",
   CHAT_NAV: "chatNAv",
   EDIT_PROFILE: "EditProfile",

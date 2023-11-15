@@ -123,6 +123,7 @@ const AppNavigator = (ref) => {
         component={ChatNavigator}
         options={{
           headerShown: false,
+          tabBarLabel: () => null,
           //tabBarLabel: "محادثتي",
           tabBarIcon: ({ color, size }) => <Feather name="message-circle" color={color} size={size} />,
         }}

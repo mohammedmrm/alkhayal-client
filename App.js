@@ -4,7 +4,7 @@ import { ApplicationProvider } from "@ui-kitten/components";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
@@ -13,6 +13,8 @@ import AppNavigator from "./app/navigations/AppNavigation";
 import AuthNavigator from "./app/navigations/AuthNavigator";
 import navigationTheme from "./app/navigations/NavigationTheme";
 import { navigationRef } from "./app/navigations/rootNavigation";
+import colors from "./app/config/colors";
+import ActivityIndecator from "./app/components/ActivtyIndectors/ActivityIndecatorChatLoading";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -54,7 +56,20 @@ export default function App() {
   }, [isReady]);
 
   if (!isReady || !loaded) {
-    return <Text>Loading ...</Text>;
+    return (
+      <SafeAreaView
+        style={{
+          width: "100%",
+          alignSelf: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
+          flex: 1,
+        }}
+      >
+        <ActivityIndecator visible={true} />
+      </SafeAreaView>
+    );
   }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
