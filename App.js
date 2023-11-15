@@ -4,7 +4,7 @@ import { ApplicationProvider } from "@ui-kitten/components";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
@@ -13,7 +13,6 @@ import AppNavigator from "./app/navigations/AppNavigation";
 import AuthNavigator from "./app/navigations/AuthNavigator";
 import navigationTheme from "./app/navigations/NavigationTheme";
 import { navigationRef } from "./app/navigations/rootNavigation";
-import colors from "./app/config/colors";
 import ActivityIndecator from "./app/components/ActivtyIndectors/ActivityIndecatorChatLoading";
 
 export default function App() {
@@ -49,7 +48,7 @@ export default function App() {
   const onLayoutRootView = useCallback(async () => {
     if (isReady) await SplashScreen.hideAsync();
   }, [isReady]);
-  
+
   useEffect(() => {
     onLayoutRootView();
   }, [isReady]);

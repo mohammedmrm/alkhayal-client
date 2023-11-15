@@ -3,8 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Platform } from "react-native";
 import Routes from "../Routes";
 import expoPushTokenApi from "../api/expoPushTokens";
@@ -15,56 +14,27 @@ import Profile from "./../screens/Profile";
 import ChatNavigator from "./ChatNavigator";
 import DashboardNavigator from "./DashboardNavigator";
 import NotificationsNavigator from "./NotificationsNavigator";
+import { isDevice } from "expo-device";
 
 const Tab = createBottomTabNavigator();
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
 const AppNavigator = (ref) => {
   const { user } = useAuth();
   const navitation = useNavigation();
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: false,
-    }),
-  });
-  const lastNotificationResponse = Notifications.useLastNotificationResponse();
-  useEffect(() => {
-    if (lastNotificationResponse) {
-      var id = lastNotificationResponse.notification.request.content.data.id;
-      console.log("Noti ORDER ID", lastNotificationResponse.notification.request.content.data.id);
-      id &&
-        navitation.navigate(Routes.ORDER_DETAILS, {
-          id: id,
-          notify_id: "",
-        });
-    }
-  }, [lastNotificationResponse]);
-
-  const regesterForPushNotificaition = async () => {
+  const notificationListener = useRef();
+  const responseListener = useRef();
+  async function registerForPushNotificationsAsync() {
+    let token;
     try {
-      let experienceId = undefined;
-      if (!Constants.expoConfig) {
-        // Absence of the manifest means we're in bare workflow
-        experienceId = "@username/clientExpo";
-      }
-      const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-
-      let finalStatus = existingStatus;
-      if (existingStatus !== "granted") {
-        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-        finalStatus = status;
-      }
-      if (finalStatus !== "granted") {
-        alert("Failed to get push token for push notification!");
-        return;
-      }
-      const token = await Notifications.getExpoPushTokenAsync({
-        experienceId,
-        projectId: "c7d93515-fc17-43e1-bf1c-a1666bb24d6d",
-      });
-      await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
       if (Platform.OS === "android") {
-        Notifications.setNotificationChannelAsync(`alnahr_user_id_${user.data.id}`, {
+        Notifications.setNotificationChannelAsync("default", {
           name: `alnahr_user_id_${user.data.id}`,
           sound: true,
           importance: Notifications.AndroidImportance.MAX,
@@ -72,12 +42,52 @@ const AppNavigator = (ref) => {
           lightColor: "#FF231F7C",
         });
       }
+
+      if (isDevice) {
+        const { status: existingStatus } = await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== "granted") {
+          const { status } = await Notifications.requestPermissionsAsync();
+          finalStatus = status;
+        }
+        if (finalStatus !== "granted") {
+          alert("Failed to get push token for push notification!");
+          return;
+        }
+        token = await Notifications.getExpoPushTokenAsync({
+          projectId: Constants.expoConfig.extra.eas.projectId,
+        });
+        await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
+      } else {
+        alert("Must use physical device for Push Notifications");
+      }
     } catch (error) {
       console.log("Error getting a push token", error);
     }
-  };
+  }
   useEffect(() => {
-    regesterForPushNotificaition();
+    notificationListener.current = Notifications.addNotificationReceivedListener((notification) => {
+      navitation.navigate(Routes.ORDER_DETAILS, {
+        id: notification.notification.request.content.data.id,
+        notify_id: "",
+      });
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
+      navitation.navigate(Routes.ORDER_DETAILS, {
+        id: response.notification.request.content.data.id,
+        notify_id: "",
+      });
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    registerForPushNotificationsAsync();
   }, []);
 
   return (
@@ -85,7 +95,7 @@ const AppNavigator = (ref) => {
       activeColor={colors.vueColorButtom}
       backBehaviour="initialRoute"
       style={{ backgroundColor: colors.vueColorButtom, fontFamily: "Tjw_blod" }}
-      initialRouteName={Routes.DASHBOARD_LIST}
+      initialRouteName={Routes.DASHBOARD_NAV}
     >
       <Tab.Screen
         name={Routes.SEARCH_NAV}
