@@ -10,7 +10,7 @@ import SearchResults from "../screens/SearchResults";
 const Stack = createStackNavigator();
 const DashboardNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName={Routes.DASHBOARD}>
+    <Stack.Navigator initialRouteName={Routes.SEARCH_RESULTS}>
       <Stack.Screen
         name={Routes.SEARCH_RESULTS}
         component={SearchResults}

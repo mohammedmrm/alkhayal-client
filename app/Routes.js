@@ -1,10 +1,13 @@
 export default Object.freeze({
   DASHBOARD: "dashboard",
   CHAT: "chat",
+  CHAT_NAV: "chatNAv",
   EDIT_PROFILE: "EditProfile",
   PROFILE: "profile",
   NOTIFICATION: "notification",
+  NOTIFICATION_NAV: "notificationNAV",
   SEARCH_RESULTS: "searchResults",
+  SEARCH_NAV: "searchNav",
   WELCOME: "welcome",
   LOGIN: "LoginScreen",
   UNDER_RECEIVER_ORDERS: "UnderReceive",

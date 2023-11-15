@@ -10,7 +10,7 @@ import Routes from "../Routes";
 import expoPushTokenApi from "../api/expoPushTokens";
 import useAuth from "../auth/useAuth";
 import colors from "../config/colors";
-import SearchResults from "./../navigations/SearchNavigator";
+import SearchNavigator from "./../navigations/SearchNavigator";
 import Profile from "./../screens/Profile";
 import ChatNavigator from "./ChatNavigator";
 import DashboardNavigator from "./DashboardNavigator";
@@ -85,11 +85,11 @@ const AppNavigator = (ref) => {
       activeColor={colors.vueColorButtom}
       backBehaviour="initialRoute"
       style={{ backgroundColor: colors.vueColorButtom, fontFamily: "Tjw_blod" }}
-      initialRouteName={Routes.DASHBOARD}
+      initialRouteName={Routes.DASHBOARD_LIST}
     >
       <Tab.Screen
-        name={Routes.SEARCH_RESULTS}
-        component={SearchResults}
+        name={Routes.SEARCH_NAV}
+        component={SearchNavigator}
         options={{
           headerShown: false,
           tabBarLabel: () => null,
@@ -98,7 +98,7 @@ const AppNavigator = (ref) => {
         }}
       />
       <Tab.Screen
-        name={Routes.NOTIFICATION}
+        name={Routes.NOTIFICATION_NAV}
         component={NotificationsNavigator}
         options={{
           headerShown: false,
@@ -108,7 +108,7 @@ const AppNavigator = (ref) => {
         }}
       />
       <Tab.Screen
-        name={Routes.DASHBOARD}
+        name={Routes.DASHBOARD_LIST}
         component={DashboardNavigator}
         options={({ navigation }) => ({
           headerShown: false,
@@ -119,11 +119,10 @@ const AppNavigator = (ref) => {
       />
 
       <Tab.Screen
-        name={Routes.CHAT}
+        name={Routes.CHAT_NAV}
         component={ChatNavigator}
         options={{
           headerShown: false,
-          tabBarLabel: () => null,
           //tabBarLabel: "محادثتي",
           tabBarIcon: ({ color, size }) => <Feather name="message-circle" color={color} size={size} />,
         }}
