@@ -57,8 +57,11 @@ const AppNavigator = (ref) => {
         token = await Notifications.getExpoPushTokenAsync({
           projectId: Constants.expoConfig.extra.eas.projectId,
         });
-        //await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
-        console.log(token);
+        try {
+          await expoPushTokenApi.register(user.token, JSON.stringify(token.data));
+        } catch (e) {
+          alert("Unable to store your notification token");
+        }
       } else {
         alert("Must use physical device for Push Notifications");
       }

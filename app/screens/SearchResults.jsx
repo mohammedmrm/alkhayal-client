@@ -130,11 +130,17 @@ function SearchResult() {
     setIsLoading(false);
   };
   const loadOrders_local = async (nextPage) => {
-    const results = await cache.get(settings.apiUrl + "/search.php?token=" + user.token + "&limit=20&page=" + nextPage);
-    if (results.data.success === "0") {
-      return null;
+    try {
+      const results = await cache.get(
+        settings.apiUrl + "/search.php?token=" + user.token + "&limit=20&page=" + nextPage
+      );
+      if (results.data.success === "0") {
+        return null;
+      }
+      setOrders(results.data);
+    } catch (e) {
+      console.log(e);
     }
-    setOrders(results.data);
     setIsLoading(false);
   };
   useEffect(() => {
