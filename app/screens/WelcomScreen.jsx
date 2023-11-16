@@ -1,20 +1,16 @@
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import AppButton from "../components/AppButton";
-import Routes from "./../Routes";
-import settings from "../config/settings";
 import colors from "../config/colors";
+import settings from "../config/settings";
+import Routes from "./../Routes";
 
 export default function WelcomeScreen() {
   const navigation = useNavigation();
   return (
-    <ImageBackground
-      blurRadius={10}
-      style={styles.background}
-      source={require("../assets/background/welcomePage.jpg")}
-    >
+    <ImageBackground blurRadius={10} style={styles.background} source={require("../assets/background/welcomePage.jpg")}>
       <StatusBar style="light" />
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={settings.logo} />
@@ -27,10 +23,7 @@ export default function WelcomeScreen() {
           bottom: "5%",
         }}
       >
-        <AppButton
-          title="أبداء رحلتك معنا"
-          onPress={() => navigation.navigate(Routes.LOGIN)}
-        />
+        <AppButton title="أبداء رحلتك معنا" onPress={() => navigation.navigate(Routes.LOGIN)} />
       </View>
     </ImageBackground>
   );

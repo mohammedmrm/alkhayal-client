@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { FlatList, View } from "react-native";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import cache from "../utility/cache";
 
-import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorSimpleLine";
 import getChatListAPI from "../api/getChatList";
+import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorSimpleLine";
 // import AppText from "../components/AppText";
+import Routes from "../Routes";
+import useAuth from "../auth/useAuth";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
-import useAuth from "../auth/useAuth";
-import Routes from "../Routes";
-import AppText from "../components/AppText";
 
 function ChatScreen(props) {
   const [messages, setMessages] = useState([]);

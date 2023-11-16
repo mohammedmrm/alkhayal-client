@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, StyleSheet, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import cache from "../utility/cache";
 
-import Screen from "../components/Screen";
-import { ListItem, ListItemSeparator } from "../components/lists";
+import Routes from "../Routes";
 import getNotifications from "../api/getNofification";
 import useAuth from "../auth/useAuth";
-import Routes from "../Routes";
+import Screen from "../components/Screen";
+import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
 import ActivityIndecatorLoadingList from "./../components/ActivtyIndectors/ActivityIndecatorLoadingList";
 
@@ -21,32 +21,25 @@ function NotificationScreen(props) {
   const [refreshing, setRefreshing] = useState(false);
   const [page, setPage] = useState("1");
 
-  const config = {
-    velocityThreshold: 0.3,
-    directionalOffsetThreshold: 80,
-  };
-
   const loadNotification = async (nextPage) => {
-    const results = await getNotifications.get(user.token, nextPage);
-    if (results.data.success == "0") {
-      return setIsLoading(false);
+    try {
+      const results = await getNotifications.get(user.token, nextPage);
+      if (results.data.success == "0") {
+        return setIsLoading(false);
+      }
+      setPage(results.data.nextPage);
+      if (results.data.data.length > 0) {
+        setMessages([...messages, ...results.data.data]);
+      }
+      setTotalNotificaiton(results.data.unseen);
+    } catch (e) {
+      console.log(e);
     }
-    setPage(results.data.nextPage);
-    if (results.data.data.length > 0) {
-      setMessages([...messages, ...results.data.data]);
-    }
-    setTotalNotificaiton(results.data.unseen);
     setIsLoading(false);
   };
   const loadNotification_local = async (nextPage) => {
     setIsLoading(true);
-    const results = await cache.get(
-      "/getNotification.php?token=" +
-        user.token +
-        "&page=" +
-        nextPage +
-        "&limit=20"
-    );
+    const results = await cache.get("/getNotification.php?token=" + user.token + "&page=" + nextPage + "&limit=20");
     setMessages([...messages, ...results.data]);
     setTotalNotificaiton(results.data.unseen);
     setIsLoading(false);
@@ -61,11 +54,7 @@ function NotificationScreen(props) {
     loadNotification_local("1");
     loadNotification(1);
     navigator.setOptions({
-      title: (
-        <Text style={{ fontFamily: "Tjw_reg" }}>
-          الاشعارات ({totalNotificaiton})
-        </Text>
-      ),
+      title: <Text style={{ fontFamily: "Tjw_reg" }}>الاشعارات ({totalNotificaiton})</Text>,
     });
   }, []);
   const refreshingMethod = () => {
@@ -94,9 +83,7 @@ function NotificationScreen(props) {
       <View style={{ paddingTop: 5 }}>
         <FlatList
           data={messages}
-          keyExtractor={(item) =>
-            `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()
-          }
+          keyExtractor={(item) => `${item.id}-${prefix}-${Date.now() + Math.random()}`.toString()}
           renderItem={({ item }) => (
             <ListItem
               title={`${item.title} - ${item.order_no}`}

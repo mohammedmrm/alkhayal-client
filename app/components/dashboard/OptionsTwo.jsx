@@ -6,10 +6,8 @@ const OptionsList = ({ options, data }) => {
   return (
     <View>
       <View style={styles.container}>
-        {options.options.map((item) => {
-          return (
-            <Option data={data} key={Date.now() + Math.random()} path={item} />
-          );
+        {options.options.map((item, idx) => {
+          return <Option data={data} key={idx + Date.now() + Math.random()} path={item} />;
         })}
       </View>
     </View>

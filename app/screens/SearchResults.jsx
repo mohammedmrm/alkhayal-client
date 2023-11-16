@@ -104,25 +104,29 @@ function SearchResult() {
   //=====================LOADING==================================
 
   const loadOrders = async (nextPage) => {
-    const results = await getOrders.getOrders(
-      user.token,
-      status ? status.row : null,
-      city ? city.row : null,
-      store ? store.row.id : null,
-      search ? search : null,
-      nextPage
-    );
-    if (results.data.success === "0") {
-      return setIsLoading(false);
-    }
-    setPage(results.data.nextPage);
+    try {
+      const results = await getOrders.getOrders(
+        user.token,
+        status ? status.row : null,
+        city ? city.row : null,
+        store ? store.row.id : null,
+        search ? search : null,
+        nextPage
+      );
+      if (results.data.success === "0") {
+        return setIsLoading(false);
+      }
+      setPage(results.data.nextPage);
 
-    if (nextPage === "1") {
-      setNoOrders(results.data.orders);
-      setOrders(results.data.data);
-      return setIsLoading(false);
+      if (nextPage === "1") {
+        setNoOrders(results.data.orders);
+        setOrders(results.data.data);
+        return setIsLoading(false);
+      }
+      setOrders([...orders, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
     }
-    setOrders([...orders, ...results.data.data]);
     setIsLoading(false);
   };
   const loadOrders_local = async (nextPage) => {
@@ -146,34 +150,46 @@ function SearchResult() {
   }, []);
 
   const loadCities = async () => {
-    const results = await getCities.getCities(user.token);
-    const array = [
-      {
-        name: "المحافظات",
-        id: "",
-      },
-    ];
-    setCities([...array, ...results.data.data]);
+    try {
+      const results = await getCities.getCities(user.token);
+      const array = [
+        {
+          name: "المحافظات",
+          id: "",
+        },
+      ];
+      setCities([...array, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const loadStores = async () => {
-    const results = await getStores.getStores(user.token);
-    const array = [
-      {
-        name: "الكل",
-        id: "",
-      },
-    ];
-    setStores([...array, ...results.data.data]);
+    try {
+      const results = await getStores.getStores(user.token);
+      const array = [
+        {
+          name: "الكل",
+          id: "",
+        },
+      ];
+      setStores([...array, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const loadStatues = async () => {
-    const results = await getStatues.getStatues(user.token);
-    const array = [
-      {
-        name: "جميع الحالات",
-        id: "",
-      },
-    ];
-    setStatues([...array, ...results.data.data]);
+    try {
+      const results = await getStatues.getStatues(user.token);
+      const array = [
+        {
+          name: "جميع الحالات",
+          id: "",
+        },
+      ];
+      setStatues([...array, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const onEndReachedMohamed = () => {
     setIsLoading(true);

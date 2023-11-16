@@ -87,25 +87,29 @@ function DashboardList() {
   };
   //   ================================
   const loadOrders = async (nextPage) => {
-    const results = await getOrders.get(
-      user.token,
-      route.params.action,
-      city ? city.row : null,
-      store ? store.row.id : null,
-      search ? search : null,
-      nextPage
-    );
-    if (results.data.success === "0") {
-      return setIsLoading(false);
-    }
-    setPage(results.data.nextPage);
+    try {
+      const results = await getOrders.get(
+        user.token,
+        route.params.action,
+        city ? city.row : null,
+        store ? store.row.id : null,
+        search ? search : null,
+        nextPage
+      );
+      if (results.data.success === "0") {
+        return setIsLoading(false);
+      }
+      setPage(results.data.nextPage);
 
-    if (nextPage === "1") {
-      setNoOrders(results.data.orders);
-      setOrders(results.data.data);
-      return setIsLoading(false);
+      if (nextPage === "1") {
+        setNoOrders(results.data.orders);
+        setOrders(results.data.data);
+        return setIsLoading(false);
+      }
+      setOrders([...orders, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
     }
-    setOrders([...orders, ...results.data.data]);
     setIsLoading(false);
   };
   const LoadingIndicator = (props) => (
@@ -116,26 +120,34 @@ function DashboardList() {
   //================================================
 
   const loadCities = async () => {
-    const results = await getCities.getCities(user.token);
-    const array = [
-      {
-        name: "المحافظات",
-        id: "",
-      },
-    ];
-    setCities([...array, ...results.data.data]);
+    try {
+      const results = await getCities.getCities(user.token);
+      const array = [
+        {
+          name: "المحافظات",
+          id: "",
+        },
+      ];
+      setCities([...array, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
+    }
   };
   //================================================
 
   const loadStores = async () => {
-    const results = await getStores.getStores(user.token);
-    const array = [
-      {
-        name: "الصفحات",
-        id: "",
-      },
-    ];
-    setStores([...array, ...results.data.data]);
+    try {
+      const results = await getStores.getStores(user.token);
+      const array = [
+        {
+          name: "الصفحات",
+          id: "",
+        },
+      ];
+      setStores([...array, ...results.data.data]);
+    } catch (e) {
+      console.log(e);
+    }
   };
   //================================================
 

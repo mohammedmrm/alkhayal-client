@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { View, FlatList, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { FlatList, Text, View } from "react-native";
 
-import { ReportCard, ListItemSeparator, ListOrderCopyAction } from "../components/lists";
-import AppPickerCity from "./../components/AppPickerCites";
-import Button from "./../components/AppButton";
-import useAuth from "../auth/useAuth";
-import getStores from "../api/getStores";
-import getPdfs from "../api/getPdfs";
-import colors from "../config/colors";
-import Routes from "../Routes";
-import ActivityIndicator from "../components/ActivtyIndectors/ActivityIndecatorSimpleLine";
-import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorMoneyTotal";
-import { onShare } from "../utility/helper";
 import { I18nManager } from "react-native";
+import Routes from "../Routes";
+import getPdfs from "../api/getPdfs";
+import getStores from "../api/getStores";
+import useAuth from "../auth/useAuth";
+import ActivityIndecator from "../components/ActivtyIndectors/ActivityIndecatorMoneyTotal";
+import ActivityIndicator from "../components/ActivtyIndectors/ActivityIndecatorSimpleLine";
+import { ListItemSeparator, ListOrderCopyAction, ReportCard } from "../components/lists";
+import colors from "../config/colors";
+import { onShare } from "../utility/helper";
+import Button from "./../components/AppButton";
+import AppPickerCity from "./../components/AppPickerCites";
 
 function Disclosures() {
   const navigator = useNavigation();

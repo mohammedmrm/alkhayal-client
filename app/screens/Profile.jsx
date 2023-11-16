@@ -1,14 +1,12 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
+import routes from "../Routes";
+import useAuth from "../auth/useAuth";
+import Icon from "../components/Icon";
+import Screen from "../components/Screen";
 import { ListItem, ListItemSeparator } from "../components/lists";
 import colors from "../config/colors";
-import Icon from "../components/Icon";
-import routes from "../Routes";
-import Screen from "../components/Screen";
-import useAuth from "../auth/useAuth";
-import Routes from "../Routes";
-import { useNavigation } from "@react-navigation/native";
 
 const menuItems = [
   {
