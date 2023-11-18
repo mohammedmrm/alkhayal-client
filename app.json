@@ -52,6 +52,11 @@
       "color": "#FFFFFF",
       "iosDisplayInForeground": true,
       "androidMode": "default"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c7d93515-fc17-43e1-bf1c-a1666bb24d6d"
+      }
     }
   }
 }
