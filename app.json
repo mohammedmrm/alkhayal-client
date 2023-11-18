@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "شركة سرعه  - العميل",
-    "slug": "speedcomClient",
+    "name": "الملك  - العميل",
+    "slug": "malkClient",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
@@ -32,8 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.speedcom.client",
-      "buildNumber": "1.0.4"
+      "bundleIdentifier": "com.malk.client",
+      "buildNumber": "1.0.1"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -41,8 +41,8 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.speedcom.client",
-      "versionCode": 3
+      "package": "com.malk.client",
+      "versionCode": 4
     },
     "web": {
       "favicon": "./app/assets/logo/logo.png"
@@ -52,11 +52,6 @@
       "color": "#FFFFFF",
       "iosDisplayInForeground": true,
       "androidMode": "default"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "a601b8bd-bdd0-41c9-8367-558b91c88fd7"
-      }
     }
   }
 }
