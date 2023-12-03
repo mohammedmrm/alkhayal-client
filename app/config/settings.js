@@ -1,19 +1,19 @@
 import Constants from "expo-constants";
 const settings = {
   dev: {
-    apiUrl: "https://almalkexpress.com/client/api/",
+    apiUrl: "https://basra.alkhayalexpress.com/client/api/",
     logo: require("../assets/logo/logo.png"),
-    companyName: "شركة الملك",
+    companyName: "شركة الخيال",
   },
   staging: {
-    apiUrl: "https://almalkexpress.com/client/api/",
+    apiUrl: "https://basra.alkhayalexpress.com/client/api/",
     logo: require("../assets/logo/logo.png"),
-    companyName: "شركة الملك",
+    companyName: "شركة الخيال",
   },
   prod: {
-    apiUrl: "https://almalkexpress.com/client/api/",
+    apiUrl: "https://basra.alkhayalexpress.com/client/api/",
     logo: require("../assets/logo/logo.png"),
-    companyName: "شركة الملك",
+    companyName: "شركة الخيال ",
   },
 };
 
