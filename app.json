@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "شركة الخيال (البصرة)  - العميل",
-    "slug": "basraAlkhayalClient",
+    "name": "شركة الخيال (الناصرية)  - العميل",
+    "slug": "thiqarAlkhayalClient",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./app/assets/logo/logo.png",
@@ -32,7 +32,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.basra.alkhayal.client",
+      "bundleIdentifier": "com.thiqar.alkhayal.client",
       "buildNumber": "1.0.1"
     },
     "android": {
@@ -41,7 +41,7 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.basra.alkhayal.client",
+      "package": "com.thiqar.alkhayal.client",
       "versionCode": 4
     },
     "web": {

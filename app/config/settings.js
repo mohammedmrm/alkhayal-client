@@ -1,17 +1,17 @@
 import Constants from "expo-constants";
 const settings = {
   dev: {
-    apiUrl: "https://basra.alkhayalexpress.com/client/api/",
+    apiUrl: "https://thiqar.alkhayalexpress.com/client/api/",
     logo: require("../assets/logo/logo.png"),
     companyName: "شركة الخيال",
   },
   staging: {
-    apiUrl: "https://basra.alkhayalexpress.com/client/api/",
+    apiUrl: "https://thiqar.alkhayalexpress.com/client/api/",
     logo: require("../assets/logo/logo.png"),
     companyName: "شركة الخيال",
   },
   prod: {
-    apiUrl: "https://basra.alkhayalexpress.com/client/api/",
+    apiUrl: "https://thiqar.alkhayalexpress.com/client/api/",
     logo: require("../assets/logo/logo.png"),
     companyName: "شركة الخيال ",
   },

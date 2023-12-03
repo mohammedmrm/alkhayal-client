@@ -1,5 +1,5 @@
 {
-  "name": "malk-clinet",
+  "name": "thiqar-alkhayal-clinet",
   "version": "1.0.1",
   "scripts": {
     "start": "expo start --dev-client",
