@@ -41,7 +41,7 @@
         "foregroundImage": "./app/assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.alsanjar.client",
+      "package": "com.alsanjarl.client",
       "versionCode": 4
     },
     "web": {
@@ -52,6 +52,11 @@
       "color": "#FFFFFF",
       "iosDisplayInForeground": true,
       "androidMode": "default"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "30741964-a067-40c9-a2c8-558fb1afbca1"
+      }
     }
   }
 }
